@@ -71,9 +71,9 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-补充函数知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+    <article id="post-函数知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/08/09/%E8%A1%A5%E5%85%85%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" class="article-date">
+    <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" class="article-date">
   <time class="dt-published" datetime="2022-08-08T17:32:54.000Z" itemprop="datePublished">2022-08-09</time>
 </a>
     
@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/09/%E8%A1%A5%E5%85%85%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
+      <a class="p-name article-title" href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
     </h1>
   
 
@@ -93,16 +93,27 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>#rand()函数<br>在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：<br>int rand(void)<br>下面是一个生成随机书的例子</p>
-<p>  #include &lt;stdio.h&gt;<br>  #include &lt;stdlib.h&gt;</p>
+        <p>#rand()函数<br>在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：<br>int rand(void)</p>
+<p>下面是一个生成随机数的例子<br>  #include &lt;stdio.h&gt;<br>  #include &lt;stdlib.h&gt;</p>
 <p>int main(void)<br>{<br>   int a &#x3D; rand();<br>   printf(“%d\n”,a);<br>   return 0;<br>}</p>
-<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。<br>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
+<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都<br>是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。</p>
+<p>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，<br>每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
+<p>###播种<br>我们可以通过srand()函数进行重新“播种”，这样种子就会变化。srand()的用法为：<br>void srand(unsighed int seed)</p>
+<p>它需要一个unsighed int类型的参数。通常情况下，我们使用时间作为参数，只要每次播种的时间不同，播种出来的结果(即随机数)自然也不相同。</p>
+<p>使用&lt;time.h&gt;头文件里的time()可以得到目前的时间(精确到秒)，就像下面这样：<br>srand((unsighed)time(NULL))</p>
+<p>###生成一定范围的随机数</p>
+<p>在实际的应用中，我们经常采用取模的方式生成一定范围的随机数<br>例如：<br>rand()%5;   &#x2F;&#x2F;代表此时生成的随机数的范围是0~4，一旦大于5，就会被5整除</p>
+<p>rand()%10 + 15;   &#x2F;&#x2F;产生15~24的随机数</p>
+<p>###连续生成随机数<br>有时候我们需要连续生成多个随机数，最容易想到的方法就是利用循环<br>方法一：<br> #include &lt;stdio.h&gt;<br> #include &lt;stdlib.h&gt;<br> #include &lt;time.h&gt;</p>
+<p> int main(void)<br> {<br>  int a;<br>  for(int i&#x3D;0;i&lt;5;i++)<br>  {<br>    srand((unsighed)time(NULL));<br>    a &#x3D; rand();<br>    printf(“%d “,a);<br>  }<br>  return 0;<br> }<br> 输出：132009022 132009022 132009022 132009022 132009022<br> 分析：这里没有出现连续随机数的原因是for循环运行的速度太快了，连一秒的时间都不到就运行完了，而time()函数是指精确到秒的，所以所有的种子都一样。如果需要生成连续的随机数，把srand((unsighed)time(NULL))放到for循环的外面就可以了，如方法二所示：</p>
+<p>方法二：<br> #include &lt;stdio.h&gt;<br> #include &lt;stdlib.h&gt;<br> #include &lt;time.h&gt;</p>
+<p> int main(void)<br> {<br>  int a;<br>  srand((unsighed)time(NULL));<br>  for(int i&#x3D;0;i&lt;100;i++)<br>  {<br>    a &#x3D; rand();<br>    printf(“%d “,a);<br>  }<br>  return 0;<br> }<br>输出：664229233 496172995 2049999013 713627486 767289124</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/09/%E8%A1%A5%E5%85%85%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" data-id="cl6l1a8wo000078vq74pz985w" data-title="补充函数知识" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" data-id="cl6m4ljjz0001mcvqgr5ah1rs" data-title="补充函数知识" class="article-share-link">Share</a>
       
       
       
@@ -188,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" data-id="cl6j3efum00007cvqapdp8wo2" data-title="B站左神Leecode数据结构与算法第一节课" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" data-id="cl6m4ljjl0000mcvqbexfhfic" data-title="B站左神Leecode数据结构与算法第一节课" class="article-share-link">Share</a>
       
       
       
@@ -239,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/07/hello-world/" data-id="cl6j3efwl00017cvqhbb443s4" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/07/hello-world/" data-id="cl6m4ljk10002mcvqaaf41hcy" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
@@ -282,7 +293,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/09/%E8%A1%A5%E5%85%85%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
+            <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
           </li>
         
           <li>
