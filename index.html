@@ -93,7 +93,10 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>###rand()函数</p>
+        <p>#rand()函数<br>在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：<br>int rand(void)<br>下面是一个生成随机书的例子</p>
+<p>  #include &lt;stdio.h&gt;<br>  #include &lt;stdlib.h&gt;</p>
+<p>int main(void)<br>{<br>   int a &#x3D; rand();<br>   printf(“%d\n”,a);<br>   return 0;<br>}</p>
+<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。<br>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
 <hr>
 
       
