@@ -6,15 +6,15 @@
   
   <title>补充函数知识 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="#rand()函数在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);">
+  <meta name="description" content="#rand()函数 头文件：&lt;stdlib.h&gt;用法：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);   return 0;} ###随机数的本质多次运行">
 <meta property="og:type" content="article">
 <meta property="og:title" content="补充函数知识">
 <meta property="og:url" content="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#rand()函数在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);">
+<meta property="og:description" content="#rand()函数 头文件：&lt;stdlib.h&gt;用法：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);   return 0;} ###随机数的本质多次运行">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-08T17:32:54.000Z">
-<meta property="article:modified_time" content="2022-08-09T11:54:14.062Z">
+<meta property="article:modified_time" content="2022-08-10T16:45:02.034Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -95,7 +95,8 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>#rand()函数<br>在C语言中，我们一般使用&lt;stdlib.h&gt;下的rand（）函数来生成随机数，他的用法为：<br>int rand(void)</p>
+        <p>#rand()函数</p>
+<p>头文件：&lt;stdlib.h&gt;<br>用法：int rand(void)</p>
 <p>下面是一个生成随机数的例子<br>  #include &lt;stdio.h&gt;<br>  #include &lt;stdlib.h&gt;</p>
 <p>int main(void)<br>{<br>   int a &#x3D; rand();<br>   printf(“%d\n”,a);<br>   return 0;<br>}</p>
 <p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都<br>是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。</p>
@@ -111,11 +112,27 @@
 <p>方法二：<br> #include &lt;stdio.h&gt;<br> #include &lt;stdlib.h&gt;<br> #include &lt;time.h&gt;</p>
 <p> int main(void)<br> {<br>  int a;<br>  srand((unsighed)time(NULL));<br>  for(int i&#x3D;0;i&lt;100;i++)<br>  {<br>    a &#x3D; rand();<br>    printf(“%d “,a);<br>  }<br>  return 0;<br> }<br>输出：664229233 496172995 2049999013 713627486 767289124</p>
 <hr>
+<p>#memset()函数<br>头文件：&lt;string.h&gt;<br>用法：void memset(void *s,char ch,unsighed n)</p>
+<p>memset函数多用于对数组和结构体这种占用内存较大的数据结构进行初始化赋值，如果没有进行初始化，结构体和数组有可能会出现一些野值，可能对于程序产生不好的影响。</p>
+<p><em><strong>但是它的赋值是以字节为单位进行的</strong></em></p>
+<p>###给数组初始化：<br>例子：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
+<p> int main(void)<br> {<br>  int b[10];<br>  memset(b,0,sizeof(b));       &#x2F;&#x2F;等价于memset(b,0,sizeof(int)*10);<br>  for(int i&#x3D;0;i&lt;10;i++)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br> 输出：0 0 0 0 0 0 0 0 0 0</p>
+<p>###给结构体初始化：<br>例子：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
+<p> typedef struct node<br> {<br>  int data;<br>  struct node *pNext;<br> }Node;</p>
+<p> int main(void)<br> {<br>  Node node;<br>  memset(&amp;node,0,sizeof(struct node));<br>  return 0;<br> }</p>
+<p> 通过memset给结构体初始化就方便许多;</p>
+<p> 如果是给结构体数组初始化则是：<br> Node node[10];<br> memset(node,0,sizeof(node)*10);</p>
+<p>###常见的错误：</p>
+<p>##错误一:sizeof(指针)<br>示例：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
+<p> int main(void)<br> {<br>  int b[10];<br>  int *str &#x3D; b;<br>  memset(b,0,sizeof(str));<br>  for(int i&#x3D;0;i&lt;10;++i)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br>以上代码输出的结果是什么？会全部都输出0吗？<br>错误，结果应该输出为：<br>0 0 0 0 68 68 68 68 68 68<br>分析：因为str为指针变量，指针变量属于int类型，而int类型只有4个字节，而memset函数是按照字节进行赋值的，所以只有前面四个进行了初始化，后面六个数据没有进行初始化。</p>
+<p>##错误二：多字节变量非0赋值结果与想象的不同<br>示例：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
+<p> int main(void)<br> {<br>  int b[5];<br>  memset(b,1,sizeof(b));<br>  for(int i&#x3D;0;i&lt;5;++i)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br> 以上代码输出的结果是什么？会全部都输出1吗？<br>错误，结果应该输出为：<br>16843009 16843009 16843009 16843009 16843009 16843009<br>分析：因为memset()函数是以单字节赋值的，所以b[0]的内部数据进行的赋值应该是如下所示： b[0] &#x3D; 0001 0001 0001 0001 ;将b[0]内部的数据转化为10进制后的数据就是16843009。</p>
+<hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" data-id="cl6m4ljjz0001mcvqgr5ah1rs" data-title="补充函数知识" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" data-id="cl6nug4kz00017ovqbkc8h1rk" data-title="补充函数知识" class="article-share-link">Share</a>
       
       
       
