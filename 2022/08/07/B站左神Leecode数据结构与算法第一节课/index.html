@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>B站左神Leecode数据结构与算法第一节课 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="##一、衡量算法的标准：  时间复杂度（流程决定） 额外空间复杂度（流程决定） 常数项时间（细节决定）  ###1.时间复杂度：  ####算法流程的时间复杂度的确定：当完成了表达式的建立，只需要留下最高阶项即可，低阶项与最高阶项的系数也去掉。我们把它记为o(忽略掉系数的最高项)。 ####时间复杂度的意义：当我们需要测试的数据格外庞大时，常数项系数与低阶项就变得无关紧要了，而最高项就显得尤为重要">
+<meta property="og:type" content="article">
+<meta property="og:title" content="B站左神Leecode数据结构与算法第一节课">
+<meta property="og:url" content="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="##一、衡量算法的标准：  时间复杂度（流程决定） 额外空间复杂度（流程决定） 常数项时间（细节决定）  ###1.时间复杂度：  ####算法流程的时间复杂度的确定：当完成了表达式的建立，只需要留下最高阶项即可，低阶项与最高阶项的系数也去掉。我们把它记为o(忽略掉系数的最高项)。 ####时间复杂度的意义：当我们需要测试的数据格外庞大时，常数项系数与低阶项就变得无关紧要了，而最高项就显得尤为重要">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2022-08-06T21:48:02.000Z">
+<meta property="article:modified_time" content="2022-08-07T08:57:40.087Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-B站左神Leecode数据结构与算法第一节课" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" class="article-date">
+  <time class="dt-published" datetime="2022-08-06T21:48:02.000Z" itemprop="datePublished">2022-08-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      B站左神Leecode数据结构与算法第一节课
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##一、衡量算法的标准：</p>
+<ul>
+<li>时间复杂度（流程决定）</li>
+<li>额外空间复杂度（流程决定）</li>
+<li>常数项时间（细节决定）</li>
+</ul>
+<p>###1.时间复杂度：</p>
+<hr>
+<p>####算法流程的时间复杂度的确定：<br>当完成了表达式的建立，只需要留下最高阶项即可，低阶项与最高阶项的系数也去掉。<br>我们把它记为o(忽略掉系数的最高项)。</p>
+<p>####时间复杂度的意义：<br>当我们需要测试的数据格外庞大时，常数项系数与低阶项就变得无关紧要了，而最高项就显得尤为重要。<br>时间复杂度是衡量算法流程的复杂程度的一种指标，该指标只与数据量有关，与过程的优化无关。</p>
+<p>####常见的时间复杂度：<br>以下时间复杂度从低到高</p>
+<ol>
+<li>o(1)</li>
+<li>o(log n)</li>
+<li>o(n)</li>
+<li>o(n * log n)</li>
+<li>o(n^2) o(n^3)……o(n^k)</li>
+<li>o(2^n) o(3^n)……0(k^n)</li>
+<li>o(n!)</li>
+</ol>
+<hr>
+<p>###2.额外空间复杂度</p>
+<hr>
+<p>在实现一个算法的过程中，除了输入参数与输出结果所需要必要的开辟出来的空间之外，你的算法流程还必须开辟额外的空间才能让你的流程执行下去，这部分空间就是额外空间。</p>
+<p>如果你的流程只需要开辟几个有限的变量，额外空间复杂度就是o(1)。</p>
+<hr>
+<p>###3.常数项时间</p>
+<hr>
+<p>####常见的常数时间操作：<br>1.常见的算数运算符（+，-，*，&#x2F;，%等）<br>2.常见的位运算（&lt;&lt;，&gt;&gt;，&amp;，|，等）<br>3.赋值，比较，自增，自减操作等<br>4.数组的寻址操作（因为数组存储数据的方式是连续的）</p>
+<p>####算法流程的总操作数量与样本数量之间的表达式关系的确定：<br>1.想象数据算法流程所处理的数据状况，按照最差的来。<br>2.把整个流程彻底拆分成一个个基本动作，保证每一个动作都是常熟时间的操作。<br>3.如果数据量为N，则观察基本动作的数量与N的关系</p>
+<hr>
+<p>##总结</p>
+<p><strong>1.在衡量算法的标准中，时间复杂度最为重要，额外空间复杂度次之，而常数项时间最无关紧要。</strong></p>
+<p><strong>2.判断两个算法的好坏，第一标准就是时间复杂度，时间复杂度大的算法一定不如时间复杂度小的算法；第二标准是额外空间复杂度，在时间复杂度相等的情况下，哪个算法需要额外申请的空间越小，它一定越好；如果两个算法的时间复杂度和额外空间复杂度都相同，我们只需要提供大量数据让程序跑起来，看哪个算法的用时最少。</strong></p>
+<p><strong>3.我们不进行常数项分析的原因是这不仅需要大量的分析而且分析的结果也是不一定正确的。因为常数操作里也是分快慢的，比如位运算就一定要比加减乘除等其他运算快。所以我们不如直接提供大量数据让程序跑起来，让事实说话。</strong></p>
+<hr>
+<p>##二、认识对数器</p>
+<p>###利用对数器检验算法的正确与否：<br>1.你想测试的方法a<br>2.实现复杂度不好但是容易实现的方法b<br>3.实现一个随机样本产生器<br>4.让方法a和方法b跑同样的随机样本，看得到的结果是否一样<br>5.如果有一个随机样本使得比对结果不一样，打印样本进行人工干预，将方法a和方法b改对<br>6.当样本数量足够多的时候比对测试依然正确，我们就可以认为方法a已经正确</p>
+<hr>
+<p>##三、认识二分法<br>我们经常看到的二分法是在一个有序的数组上使用。但有序并非是二分法的必要条件。我们只需要判断左右两侧只要有一侧是一定正确或一定错误就可以使用二分法。</p>
+<p><strong>有序问题</strong><br>1.在一个有序数组中，找一个值是否存在<br>2.在一个有序数组中，找大于等于某个数最左侧的位置<br><strong>无序问题</strong><br>在一个无序数组中，任意两个相邻的数都不相等，只需要返回一个局部最小的值</p>
+<hr>
+<p>##四、正确认识异或运算</p>
+<p>错误的记法：<br>  异或运算：相同为0，不同为1<br>  同或运算：相同为1，不同为0<br><em>这种记忆方法不仅效率低，而且还容易记混</em></p>
+<p>正确的记法：<br>  异或运算就相当于无符号数的进位相加</p>
+<p>异或运算的性质：<br>1.0^N &#x3D; N , N^N &#x3D; 0<br>2.异或运算满足结合律与交换律</p>
+<p>题目：<br>1.如何不适用额外变量交换两个数<br>2.一个数组中有一个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这个数<br>3.怎么把一个int类型的数，提取最右侧的1<br>4.一个数组中有两个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两个数</p>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" data-id="cl6qrpslk0000gwvq9ihaft8l" data-title="B站左神Leecode数据结构与算法第一节课" class="article-share-link">Share</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          补充函数知识
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/08/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">B站左神Leecode数据结构与算法第一节课</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/07/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
