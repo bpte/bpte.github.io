@@ -1,245 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>补充函数知识 | Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="#rand()函数 头文件：&lt;stdlib.h&gt;用法：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);   return 0;} ###随机数的本质多次运行">
-<meta property="og:type" content="article">
-<meta property="og:title" content="补充函数知识">
-<meta property="og:url" content="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="#rand()函数 头文件：&lt;stdlib.h&gt;用法：int rand(void) 下面是一个生成随机数的例子  #include &lt;stdio.h&gt;  #include &lt;stdlib.h&gt; int main(void){   int a &#x3D; rand();   printf(“%d\n”,a);   return 0;} ###随机数的本质多次运行">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2022-08-08T17:32:54.000Z">
-<meta property="article:modified_time" content="2022-08-10T16:45:02.034Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.2.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-函数知识" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" class="article-date">
-  <time class="dt-published" datetime="2022-08-08T17:32:54.000Z" itemprop="datePublished">2022-08-09</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      补充函数知识
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#rand()函数</p>
-<p>头文件：&lt;stdlib.h&gt;<br>用法：int rand(void)</p>
-<p>下面是一个生成随机数的例子<br>  #include &lt;stdio.h&gt;<br>  #include &lt;stdlib.h&gt;</p>
-<p>int main(void)<br>{<br>   int a &#x3D; rand();<br>   printf(“%d\n”,a);<br>   return 0;<br>}</p>
-<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都<br>是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。</p>
-<p>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，<br>每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
-<p>###播种<br>我们可以通过srand()函数进行重新“播种”，这样种子就会变化。srand()的用法为：<br>void srand(unsighed int seed)</p>
-<p>它需要一个unsighed int类型的参数。通常情况下，我们使用时间作为参数，只要每次播种的时间不同，播种出来的结果(即随机数)自然也不相同。</p>
-<p>使用&lt;time.h&gt;头文件里的time()可以得到目前的时间(精确到秒)，就像下面这样：<br>srand((unsighed)time(NULL))</p>
-<p>###生成一定范围的随机数</p>
-<p>在实际的应用中，我们经常采用取模的方式生成一定范围的随机数<br>例如：<br>rand()%5;   &#x2F;&#x2F;代表此时生成的随机数的范围是0~4，一旦大于5，就会被5整除</p>
-<p>rand()%10 + 15;   &#x2F;&#x2F;产生15~24的随机数</p>
-<p>###连续生成随机数<br>有时候我们需要连续生成多个随机数，最容易想到的方法就是利用循环<br>方法一：<br> #include &lt;stdio.h&gt;<br> #include &lt;stdlib.h&gt;<br> #include &lt;time.h&gt;</p>
-<p> int main(void)<br> {<br>  int a;<br>  for(int i&#x3D;0;i&lt;5;i++)<br>  {<br>    srand((unsighed)time(NULL));<br>    a &#x3D; rand();<br>    printf(“%d “,a);<br>  }<br>  return 0;<br> }<br> 输出：132009022 132009022 132009022 132009022 132009022<br> 分析：这里没有出现连续随机数的原因是for循环运行的速度太快了，连一秒的时间都不到就运行完了，而time()函数是指精确到秒的，所以所有的种子都一样。如果需要生成连续的随机数，把srand((unsighed)time(NULL))放到for循环的外面就可以了，如方法二所示：</p>
-<p>方法二：<br> #include &lt;stdio.h&gt;<br> #include &lt;stdlib.h&gt;<br> #include &lt;time.h&gt;</p>
-<p> int main(void)<br> {<br>  int a;<br>  srand((unsighed)time(NULL));<br>  for(int i&#x3D;0;i&lt;100;i++)<br>  {<br>    a &#x3D; rand();<br>    printf(“%d “,a);<br>  }<br>  return 0;<br> }<br>输出：664229233 496172995 2049999013 713627486 767289124</p>
-<hr>
-<p>#memset()函数<br>头文件：&lt;string.h&gt;<br>用法：void memset(void *s,char ch,unsighed n)</p>
-<p>memset函数多用于对数组和结构体这种占用内存较大的数据结构进行初始化赋值，如果没有进行初始化，结构体和数组有可能会出现一些野值，可能对于程序产生不好的影响。</p>
-<p><em><strong>但是它的赋值是以字节为单位进行的</strong></em></p>
-<p>###给数组初始化：<br>例子：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
-<p> int main(void)<br> {<br>  int b[10];<br>  memset(b,0,sizeof(b));       &#x2F;&#x2F;等价于memset(b,0,sizeof(int)*10);<br>  for(int i&#x3D;0;i&lt;10;i++)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br> 输出：0 0 0 0 0 0 0 0 0 0</p>
-<p>###给结构体初始化：<br>例子：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
-<p> typedef struct node<br> {<br>  int data;<br>  struct node *pNext;<br> }Node;</p>
-<p> int main(void)<br> {<br>  Node node;<br>  memset(&amp;node,0,sizeof(struct node));<br>  return 0;<br> }</p>
-<p> 通过memset给结构体初始化就方便许多;</p>
-<p> 如果是给结构体数组初始化则是：<br> Node node[10];<br> memset(node,0,sizeof(node)*10);</p>
-<p>###常见的错误：</p>
-<p>##错误一:sizeof(指针)<br>示例：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
-<p> int main(void)<br> {<br>  int b[10];<br>  int *str &#x3D; b;<br>  memset(b,0,sizeof(str));<br>  for(int i&#x3D;0;i&lt;10;++i)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br>以上代码输出的结果是什么？会全部都输出0吗？<br>错误，结果应该输出为：<br>0 0 0 0 68 68 68 68 68 68<br>分析：因为str为指针变量，指针变量属于int类型，而int类型只有4个字节，而memset函数是按照字节进行赋值的，所以只有前面四个进行了初始化，后面六个数据没有进行初始化。</p>
-<p>##错误二：多字节变量非0赋值结果与想象的不同<br>示例：<br> #include &lt;stdio.h&gt;<br> #include &lt;string.h&gt;</p>
-<p> int main(void)<br> {<br>  int b[5];<br>  memset(b,1,sizeof(b));<br>  for(int i&#x3D;0;i&lt;5;++i)<br>  {<br>    printf(“%d “,b[i]);<br>  }<br>  return 0;<br> }<br> 以上代码输出的结果是什么？会全部都输出1吗？<br>错误，结果应该输出为：<br>16843009 16843009 16843009 16843009 16843009 16843009<br>分析：因为memset()函数是以单字节赋值的，所以b[0]的内部数据进行的赋值应该是如下所示： b[0] &#x3D; 0001 0001 0001 0001 ;将b[0]内部的数据转化为10进制后的数据就是16843009。</p>
-<hr>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" data-id="cl6qrpslq0002gwvq04nu1ij4" data-title="补充函数知识" class="article-share-link">Share</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">B站左神Leecode数据结构与算法第一节课</div>
-    </a>
-  
-</nav>
-
-  
-</article>
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-  
-    
+{% block page_class %}page-post-detail{% endblock %}
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">August 2022</a></li></ul>
+
+{% block content %}
+
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
+
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/08/09/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/">补充函数知识</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/">B站左神Leecode数据结构与算法第一节课</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/07/hello-world/">Hello World</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2022 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
