@@ -14,7 +14,7 @@
 <meta property="og:description" content="##一、衡量算法的标准：  时间复杂度（流程决定） 额外空间复杂度（流程决定） 常数项时间（细节决定）  ###1.时间复杂度：  ####算法流程的时间复杂度的确定：当完成了表达式的建立，只需要留下最高阶项即可，低阶项与最高阶项的系数也去掉。我们把它记为o(忽略掉系数的最高项)。 ####时间复杂度的意义：当我们需要测试的数据格外庞大时，常数项系数与低阶项就变得无关紧要了，而最高项就显得尤为重要">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-08-06T21:48:02.000Z">
-<meta property="article:modified_time" content="2022-08-07T08:57:40.087Z">
+<meta property="article:modified_time" content="2022-08-13T08:05:28.393Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
   
@@ -141,13 +141,17 @@
 <p>错误的记法：<br>  异或运算：相同为0，不同为1<br>  同或运算：相同为1，不同为0<br><em>这种记忆方法不仅效率低，而且还容易记混</em></p>
 <p>正确的记法：<br>  异或运算就相当于无符号数的进位相加</p>
 <p>异或运算的性质：<br>1.0^N &#x3D; N , N^N &#x3D; 0<br>2.异或运算满足结合律与交换律</p>
-<p>题目：<br>1.如何不适用额外变量交换两个数<br>2.一个数组中有一个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这个数<br>3.怎么把一个int类型的数，提取最右侧的1<br>4.一个数组中有两个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两个数</p>
+<p>题目：<br>1.如何不适用额外变量交换两个数</p>
+<p>2.一个数组中有一个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这个数</p>
+<p>3.怎么把一个int类型的数N，提取最右侧的1<br>方法：N &amp; ((~N)+1)</p>
+<p>原理：<br>假如N的二进制的值为：     10110111001000<br><del>N的值为：               01001000110111<br>(</del>N)+1的值为：           01001000111000<br>N &amp; ((~N)+1)的值为：     00000000001000<br><em>这样就可以提取N最右侧的1了</em></p>
+<p>4.一个数组中有两个数出现了奇数次，其他数都出现了偶数次，怎么找到并打印这两个数</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" data-id="cl6rfu7rh00003wvqhatbavar" data-title="B站左神Leecode数据结构与算法第一节课" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE/" data-id="cl6rm6bml0000zkvqchiv775n" data-title="B站左神Leecode数据结构与算法第一节课" class="article-share-link">Share</a>
       
       
       
