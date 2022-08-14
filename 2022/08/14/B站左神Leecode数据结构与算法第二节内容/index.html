@@ -6,15 +6,15 @@
   
   <title>第二节内容 | 一个编程爱好者的进阶之路</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="##链表  ###单链表单链表结构体： 12345typedef struct node&amp;#123;    int data;    struct node *pNext;&amp;#125;Node,*Pnode; 题目：1.将单链表反转再遍历输出2.将单链表中某一个值全部删除 ###双链表双链表结构体： 123456typedef struct node&amp;#123;    int data;    s">
+  <meta name="description" content="##链表  ###单链表单链表结构体： 12345typedef struct node&amp;#123;    int data;    struct node *pNext;&amp;#125;Node,*Pnode; 题目：1.将单链表反转再遍历输出 12345678910111213141516pNode inverse_list(pNode phead)&amp;#123;	pNode p &#x3D; phead;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="第二节内容">
 <meta property="og:url" content="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/index.html">
 <meta property="og:site_name" content="一个编程爱好者的进阶之路">
-<meta property="og:description" content="##链表  ###单链表单链表结构体： 12345typedef struct node&amp;#123;    int data;    struct node *pNext;&amp;#125;Node,*Pnode; 题目：1.将单链表反转再遍历输出2.将单链表中某一个值全部删除 ###双链表双链表结构体： 123456typedef struct node&amp;#123;    int data;    s">
+<meta property="og:description" content="##链表  ###单链表单链表结构体： 12345typedef struct node&amp;#123;    int data;    struct node *pNext;&amp;#125;Node,*Pnode; 题目：1.将单链表反转再遍历输出 12345678910111213141516pNode inverse_list(pNode phead)&amp;#123;	pNode p &#x3D; phead;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-14T10:39:19.000Z">
-<meta property="article:modified_time" content="2022-08-14T10:46:40.313Z">
+<meta property="article:modified_time" content="2022-08-14T14:56:49.534Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="B站左神Leecode数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -100,7 +100,11 @@
 <hr>
 <p>###单链表<br>单链表结构体：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">pNext</span>;</span></span><br><span class="line">&#125;Node,*Pnode;</span><br></pre></td></tr></table></figure>
-<p>题目：<br>1.将单链表反转再遍历输出<br>2.将单链表中某一个值全部删除</p>
+<p>题目：<br>1.将单链表反转再遍历输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pNode <span class="title function_">inverse_list</span><span class="params">(pNode phead)</span></span><br><span class="line">&#123;</span><br><span class="line">	pNode p = phead; <span class="comment">//头节点不保存数据，所以将头节点保存起来</span></span><br><span class="line">    phead = phead-&gt;pNext;</span><br><span class="line">	pNode pre = <span class="literal">NULL</span>;</span><br><span class="line">	pNode next = <span class="literal">NULL</span>;</span><br><span class="line">	<span class="keyword">while</span> (phead!=<span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		next = phead-&gt;pNext;</span><br><span class="line">		phead-&gt;pNext = pre;</span><br><span class="line">		pre = phead;</span><br><span class="line">		phead = next;</span><br><span class="line">	&#125;</span><br><span class="line">	p-&gt;pNext = pre; <span class="comment">//将不存数据的头节点指向反转之前的最后一个节点</span></span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.将单链表中某一个值全部删除</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">pNode <span class="title function_">delete_list</span><span class="params">(pNode phead, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">	pNode p = phead; <span class="comment">//保存不存储数据的头结点</span></span><br><span class="line">	pNode pNow = <span class="literal">NULL</span>;   <span class="comment">//永远指向phead的前一个结点</span></span><br><span class="line">	phead = phead-&gt;pNext;</span><br><span class="line">	<span class="keyword">while</span> (phead != <span class="literal">NULL</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (phead-&gt;data == val)</span><br><span class="line">		&#123;</span><br><span class="line">			pNow-&gt;pNext = phead-&gt;pNext;</span><br><span class="line">		&#125;</span><br><span class="line">		pNow = phead;</span><br><span class="line">		phead = phead-&gt;pNext;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>###双链表<br>双链表结构体：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">pNext</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">pLast</span>;</span></span><br><span class="line">&#125;Node,*Pnode;</span><br></pre></td></tr></table></figure>
 <p>题目：<br>1.将单链表反转再遍历输出<br>2.将单链表中某一个值全部删除</p>
@@ -109,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl6t7dkpi0001r8vq1kb8fokj" data-title="第二节内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl6tgbc4u0001lwvq5gwj28zw" data-title="第二节内容" class="article-share-link">分享</a>
       
       
       
