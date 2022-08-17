@@ -14,7 +14,7 @@
 <meta property="og:description" content="##链表  ###单链表###单链表结构体： 12345typedef struct node&amp;#123;    int data;    struct node *pNext;&amp;#125;Node,*Pnode; ###题目：1.将单链表反转再遍历输出 12345678910111213141516pNode inverse_list(pNode phead)&amp;#123;	pNode p &#x3D; p">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-14T10:39:19.000Z">
-<meta property="article:modified_time" content="2022-08-15T16:00:38.414Z">
+<meta property="article:modified_time" content="2022-08-16T09:59:59.429Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="B站左神Leecode数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -113,15 +113,23 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">pNode <span class="title function_">delete_list</span><span class="params">(pNode phead, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">	pNode p = phead;</span><br><span class="line">	pNode pNow = phead;</span><br><span class="line">	phead = phead-&gt;pNext;</span><br><span class="line">	<span class="keyword">while</span> (<span class="literal">NULL</span> != phead)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (phead-&gt;data == val)</span><br><span class="line">		&#123;</span><br><span class="line">			pNow-&gt;pNext = phead-&gt;pNext;</span><br><span class="line">			phead = phead-&gt;pNext;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			pNow = phead;</span><br><span class="line">			phead = phead-&gt;pNext;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
 <p>##栈：<br>###本身特性：<br>  先进后出，就如同装子弹的弹夹一样，先压进去的子弹最后才打出来，栈的特性就是最先存进去的数据最后才能提取出来，而最后存进去的数据第一个提取出来。</p>
-<p>###实际应用：<br>函数调用：当调用一个函数时，先把当前运行函数的数据压进栈里面，再将需要传进调用函数的参数压进栈，然后在内存空间中开辟一块空间储存，里面存储的是调用函数的数据，当函数调用完毕，将需要返回的数据返回给压进栈里面的参数和数据，最后在提取栈里面的函数的数据并返回运行函数。所以函数调用的本质就是栈的应用。</p>
+<p>###实际应用：<br>函数调用：</p>
 <p>###栈的结构体</p>
-<p>###题目：<br><strong>1.</strong></p>
+<p>###题目：<br><strong>1.用数组实现栈的功能</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.用链表实现栈的功能</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>3.用队列实现栈的功能</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 <hr>
 <p>##队列<br>###本身特性：<br>先进先出，数据就如同我们日常排队一样，先存进去的数据可以先提取出来，后面存进去的数据必须等到之前存进去的数据提取出之后才能提取出去。</p>
 <p>###队列的结构体：</p>
-<p>###题目：<br><strong>1.</strong></p>
+<p>###题目：<br><strong>1.用数组实现队列的功能</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>2.用链表实现队列的功能</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+<p><strong>3.用栈实现队列的功能</strong></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
 
 <hr>
@@ -129,7 +137,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl6uy0nma0000kkvq3um1hygg" data-title="第二节内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl6y3m6mb0001b8vqaqnub4df" data-title="第二节内容" class="article-share-link">分享</a>
       
       
       
@@ -173,7 +181,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
     </div>
   </div>
 
@@ -183,7 +191,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">函数知识</a>
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 20px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
     </div>
   </div>
 
@@ -203,6 +211,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/">条件编译</a>
+          </li>
         
           <li>
             <a href="/2022/08/15/rand%E5%87%BD%E6%95%B0/">rand函数</a>
