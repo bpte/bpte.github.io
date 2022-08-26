@@ -85,7 +85,7 @@
         
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/25/%E6%8C%87%E9%92%88/">指针</a>
+      <a class="p-name article-title" href="/2022/08/25/%E6%8C%87%E9%92%88/">指针(基础)</a>
     </h1>
   
 
@@ -106,10 +106,18 @@
 <p>假如我们现在有一个变量p,它的类型是指向整型的指针，这个变量’p’可以存放变量’a’的地址，我们利用变量’p’的一些属性，通过对变量’p’进行一些操作来访问变量’a’。</p>
 <p><strong>指针变量在C语言中的语法</strong><br>一个普通的变量在声明的过程中会给出数据类型和变量名，而指针变量的声明则是在变量面前加一个*号。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">int</span> *p;  <span class="comment">//指针变量的声明(变量&#x27;p&#x27;现在是一个可以存放整型变量的的地址的变量)</span></span><br><span class="line">p = &amp;a;  <span class="comment">//在变量&#x27;p&#x27;中存放变量&#x27;a&#x27;的地址,即p指向了a</span></span><br><span class="line">a=<span class="number">5</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p);   <span class="comment">//打印p的值，即a的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, &amp;a);  <span class="comment">//打印a的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, &amp;p);  <span class="comment">//打印p的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, *p);  <span class="comment">//打印a内部的值，*p此时被称为解引用</span></span><br><span class="line">*p = <span class="number">8</span>;  <span class="comment">//*p表示&#x27;p&#x27;指向地址的值，现在，&#x27;p&#x27;指向的值就变成了8,即a的值被修改成了8</span></span><br></pre></td></tr></table></figure>
+
+<p>##二：指针代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = &amp;a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Aress p is %d\n&quot;</span>,p);  <span class="comment">//假设p的地址是2002</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;value at adress p is %d\n&quot;</span>,*p); <span class="comment">//p存放的是a的地址，所以*p就是a的值，*p = 10;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;size of integer is %d byte\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>)); <span class="comment">//整型数据所占的字节为4个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Aress p+1 is %d\n&quot;</span>,p+<span class="number">1</span>);  <span class="comment">//p+1的地址就是2006</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;value at adress p+1 is %d\n&quot;</span>,*(p+<span class="number">1</span>)); <span class="comment">//*(p+1)存放的是随机数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Aress p is <span class="number">2750832</span></span><br><span class="line">value at adress p is <span class="number">10</span></span><br><span class="line">size of integer is <span class="number">4</span> byte</span><br><span class="line">Aress p+<span class="number">1</span> is <span class="number">2750836</span></span><br><span class="line">value at adress p+<span class="number">1</span> is <span class="number">-858993460</span></span><br></pre></td></tr></table></figure>
+
+<p>##三：指针的类型，算数运算，void指针</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl797e60n000ba8vq4x0jh5br" data-title="指针" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl7a92tda000an4vqb15lavbn" data-title="指针(基础)" class="article-share-link">分享</a>
       
       
       
@@ -154,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl797e60l0009a8vqg8shbfya" data-title="goto语句" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl7a92td70004n4vq9nybdxsq" data-title="goto语句" class="article-share-link">分享</a>
       
       
       
@@ -201,7 +209,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl797e60j0006a8vqc71mf7dx" data-title="assert函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl7a92td80006n4vqgbsh94n8" data-title="assert函数" class="article-share-link">分享</a>
       
       
       
@@ -253,7 +261,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl797e60o000ga8vq3cnucydd" data-title="第二节课代码补充" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl7a92tdc000fn4vq8ozb5bac" data-title="第二节课代码补充" class="article-share-link">分享</a>
       
       
       
@@ -306,7 +314,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl797e60o000ea8vqg9v9fqn2" data-title="条件编译" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl7a92tdc000dn4vqbbbd9171" data-title="条件编译" class="article-share-link">分享</a>
       
       
       
@@ -363,7 +371,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl797e60m000aa8vqaev1gu3y" data-title="rand函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl7a92td90009n4vq7sx627lx" data-title="rand函数" class="article-share-link">分享</a>
       
       
       
@@ -421,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/memset%E5%87%BD%E6%95%B0/" data-id="cl797e60k0007a8vq9djobn7r" data-title="memset函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/15/memset%E5%87%BD%E6%95%B0/" data-id="cl7a92td90008n4vq6mothiq3" data-title="memset函数" class="article-share-link">分享</a>
       
       
       
@@ -556,15 +564,15 @@
 <p>如题目一类的递归<br>此类递归的时间复杂度计算方法为：$T(N)&#x3D; a T(\frac{N}{b}) + o(N^d)$<br>a：一个递归函数内部调用自己的次数，上述题目的a&#x3D;2<br>b：将问题切分的规模,上述题目每次调用都将数组二分，所以b&#x3D;2<br>d：除调用自己以外所有操作之和的时间复杂度，上述题目其他操作的时间复杂度为o(1),所以d&#x3D;1;<br>所以上述题目的时间复杂度为：<br>$T(N)&#x3D; 2 T(\frac{N}{2}) + o(N^0)$</p>
 <p>如果递归符合$T(N)&#x3D; a T(\frac{N}{b}) + o(N^d)$这个式子的话<br>1.如果 $\log_b a$ &gt; d;则时间复杂度为o($N^{\log_b a}$)<br>2.如果 $\log_b a$ &lt; d;则时间复杂度为o($N^{d}$)<br>3.如果 $\log_b a$ &#x3D; d;则时间复杂度为o($N^{d}*logN$)</p>
 <hr>
-<p>##哈希表</p>
+<p>##哈希表<br>1.哈希表在使用层面上可以理解为一种集合结构<br>2.如果只有key，没有伴随数据value，可以使用HashSet结构<br><em>key为数据的编号，就像数组的下标一样，value就是存放的数据</em><br>3.如果既有key，又有伴随数据value，可以使用HashMap结构<br>4.有无伴随数据，是HashSet和HashMap唯一的区别，实际结构是一回事<br>5.使用哈希表增，删，改，查的操作，可以认为时间复杂度为o(1)，但是常数时间比较大<br>6.放入哈希表的东西，如果是基础类型，内部按值传递，内存占用这个东西的大小<br>7.放入哈希表的东西，如果不是基础类型，内部按照引用传递，内存占用8字节<br><em>总的来说，哈希表也是存储数据的一种结构</em></p>
 <hr>
-<p>##有序表</p>
+<p>##有序表<br>有序表就是在哈希表的基础上对与数据进行了排序，但是相对应的时间复杂度也增加了。</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl797e6040001a8vqhln1bqzs" data-title="第二节内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl7a92td60003n4vq1im9b43b" data-title="第二节内容" class="article-share-link">分享</a>
       
       
       
@@ -664,7 +672,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl797e5y70000a8vqenv7epfl" data-title="第一节内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/07/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%B8%80%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl7a92tcw0000n4vq6ubo96d7" data-title="第一节内容" class="article-share-link">分享</a>
       
       
       
@@ -723,7 +731,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针</a>
+            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针(基础)</a>
           </li>
         
           <li>

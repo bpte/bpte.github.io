@@ -14,7 +14,7 @@
 <meta property="og:description" content="##链表  ###单链表###单链表结构体： 12345typedef struct node&amp;#123;    int data; &#x2F;&#x2F;数据域    struct node *pNext; &#x2F;&#x2F;指针域&amp;#125;Node,*Pnode; ###题目：1.将单链表反转再遍历输出 12345678910111213141516pNode inverse_list(pNode phead)&amp;#123;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-14T10:39:19.000Z">
-<meta property="article:modified_time" content="2022-08-25T04:02:26.706Z">
+<meta property="article:modified_time" content="2022-08-26T07:20:33.190Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="B站左神Leecode数据结构与算法">
 <meta name="twitter:card" content="summary">
@@ -195,15 +195,15 @@
 <p>如题目一类的递归<br>此类递归的时间复杂度计算方法为：$T(N)&#x3D; a T(\frac{N}{b}) + o(N^d)$<br>a：一个递归函数内部调用自己的次数，上述题目的a&#x3D;2<br>b：将问题切分的规模,上述题目每次调用都将数组二分，所以b&#x3D;2<br>d：除调用自己以外所有操作之和的时间复杂度，上述题目其他操作的时间复杂度为o(1),所以d&#x3D;1;<br>所以上述题目的时间复杂度为：<br>$T(N)&#x3D; 2 T(\frac{N}{2}) + o(N^0)$</p>
 <p>如果递归符合$T(N)&#x3D; a T(\frac{N}{b}) + o(N^d)$这个式子的话<br>1.如果 $\log_b a$ &gt; d;则时间复杂度为o($N^{\log_b a}$)<br>2.如果 $\log_b a$ &lt; d;则时间复杂度为o($N^{d}$)<br>3.如果 $\log_b a$ &#x3D; d;则时间复杂度为o($N^{d}*logN$)</p>
 <hr>
-<p>##哈希表</p>
+<p>##哈希表<br>1.哈希表在使用层面上可以理解为一种集合结构<br>2.如果只有key，没有伴随数据value，可以使用HashSet结构<br><em>key为数据的编号，就像数组的下标一样，value就是存放的数据</em><br>3.如果既有key，又有伴随数据value，可以使用HashMap结构<br>4.有无伴随数据，是HashSet和HashMap唯一的区别，实际结构是一回事<br>5.使用哈希表增，删，改，查的操作，可以认为时间复杂度为o(1)，但是常数时间比较大<br>6.放入哈希表的东西，如果是基础类型，内部按值传递，内存占用这个东西的大小<br>7.放入哈希表的东西，如果不是基础类型，内部按照引用传递，内存占用8字节<br><em>总的来说，哈希表也是存储数据的一种结构</em></p>
 <hr>
-<p>##有序表</p>
+<p>##有序表<br>有序表就是在哈希表的基础上对与数据进行了排序，但是相对应的时间复杂度也增加了。</p>
 <hr>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl797e6040001a8vqhln1bqzs" data-title="第二节内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/14/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E7%AC%AC%E4%BA%8C%E8%8A%82%E5%86%85%E5%AE%B9/" data-id="cl7a92td60003n4vq1im9b43b" data-title="第二节内容" class="article-share-link">分享</a>
       
       
       
@@ -279,7 +279,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针</a>
+            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针(基础)</a>
           </li>
         
           <li>

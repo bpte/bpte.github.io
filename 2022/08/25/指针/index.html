@@ -4,17 +4,17 @@
   <meta charset="utf-8">
   
   
-  <title>指针 | 一个编程爱好者的进阶之路</title>
+  <title>指针(基础) | 一个编程爱好者的进阶之路</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="##一：指针基本介绍 我们都知道在一个系统的内存空间中，每一个字节都有一个地址。当我们写下一条声明语句： 1int a 计算机会为这个变量额外分配一些内存空间，具体分配多少内存空间，这取决于数据类型，也取决于编译器，通常来说，int类型会被分配四个字节的内存空间。 假设上述声明语句给变量’a’分配的内存空间是202~205，此时计算机内部也有一张查询表，上面记录着变量’a’的信息，’a’是整型变量">
 <meta property="og:type" content="article">
-<meta property="og:title" content="指针">
+<meta property="og:title" content="指针(基础)">
 <meta property="og:url" content="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/index.html">
 <meta property="og:site_name" content="一个编程爱好者的进阶之路">
 <meta property="og:description" content="##一：指针基本介绍 我们都知道在一个系统的内存空间中，每一个字节都有一个地址。当我们写下一条声明语句： 1int a 计算机会为这个变量额外分配一些内存空间，具体分配多少内存空间，这取决于数据类型，也取决于编译器，通常来说，int类型会被分配四个字节的内存空间。 假设上述声明语句给变量’a’分配的内存空间是202~205，此时计算机内部也有一张查询表，上面记录着变量’a’的信息，’a’是整型变量">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-25T12:27:38.000Z">
-<meta property="article:modified_time" content="2022-08-25T15:25:06.827Z">
+<meta property="article:modified_time" content="2022-08-26T09:06:07.062Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -88,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      指针
+      指针(基础)
     </h1>
   
 
@@ -109,10 +109,18 @@
 <p>假如我们现在有一个变量p,它的类型是指向整型的指针，这个变量’p’可以存放变量’a’的地址，我们利用变量’p’的一些属性，通过对变量’p’进行一些操作来访问变量’a’。</p>
 <p><strong>指针变量在C语言中的语法</strong><br>一个普通的变量在声明的过程中会给出数据类型和变量名，而指针变量的声明则是在变量面前加一个*号。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a;</span><br><span class="line"><span class="type">int</span> *p;  <span class="comment">//指针变量的声明(变量&#x27;p&#x27;现在是一个可以存放整型变量的的地址的变量)</span></span><br><span class="line">p = &amp;a;  <span class="comment">//在变量&#x27;p&#x27;中存放变量&#x27;a&#x27;的地址,即p指向了a</span></span><br><span class="line">a=<span class="number">5</span>;</span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, p);   <span class="comment">//打印p的值，即a的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, &amp;a);  <span class="comment">//打印a的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, &amp;p);  <span class="comment">//打印p的地址</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, *p);  <span class="comment">//打印a内部的值，*p此时被称为解引用</span></span><br><span class="line">*p = <span class="number">8</span>;  <span class="comment">//*p表示&#x27;p&#x27;指向地址的值，现在，&#x27;p&#x27;指向的值就变成了8,即a的值被修改成了8</span></span><br></pre></td></tr></table></figure>
+
+<p>##二：指针代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdi.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">10</span>;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = &amp;a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Aress p is %d\n&quot;</span>,p);  <span class="comment">//假设p的地址是2002</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;value at adress p is %d\n&quot;</span>,*p); <span class="comment">//p存放的是a的地址，所以*p就是a的值，*p = 10;</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;size of integer is %d byte\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>)); <span class="comment">//整型数据所占的字节为4个字节</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Aress p+1 is %d\n&quot;</span>,p+<span class="number">1</span>);  <span class="comment">//p+1的地址就是2006</span></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;value at adress p+1 is %d\n&quot;</span>,*(p+<span class="number">1</span>)); <span class="comment">//*(p+1)存放的是随机数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Aress p is <span class="number">2750832</span></span><br><span class="line">value at adress p is <span class="number">10</span></span><br><span class="line">size of integer is <span class="number">4</span> byte</span><br><span class="line">Aress p+<span class="number">1</span> is <span class="number">2750836</span></span><br><span class="line">value at adress p+<span class="number">1</span> is <span class="number">-858993460</span></span><br></pre></td></tr></table></figure>
+
+<p>##三：指针的类型，算数运算，void指针</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl797e60n000ba8vq4x0jh5br" data-title="指针" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl7a92tda000an4vqb15lavbn" data-title="指针(基础)" class="article-share-link">分享</a>
       
       
       
@@ -179,7 +187,7 @@
       <ul>
         
           <li>
-            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针</a>
+            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针(基础)</a>
           </li>
         
           <li>
