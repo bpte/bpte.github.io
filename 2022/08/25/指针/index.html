@@ -14,7 +14,7 @@
 <meta property="og:description" content="##一：指针基本介绍 我们都知道在一个系统的内存空间中，每一个字节都有一个地址。当我们写下一条声明语句： 1int a 计算机会为这个变量额外分配一些内存空间，具体分配多少内存空间，这取决于数据类型，也取决于编译器，通常来说，int类型会被分配四个字节的内存空间。 假设上述声明语句给变量’a’分配的内存空间是202~205，此时计算机内部也有一张查询表，上面记录着变量’a’的信息，’a’是整型变量">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-25T12:27:38.000Z">
-<meta property="article:modified_time" content="2022-08-26T09:06:07.062Z">
+<meta property="article:modified_time" content="2022-08-29T15:56:08.530Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -116,6 +116,16 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Aress p is <span class="number">2750832</span></span><br><span class="line">value at adress p is <span class="number">10</span></span><br><span class="line">size of integer is <span class="number">4</span> byte</span><br><span class="line">Aress p+<span class="number">1</span> is <span class="number">2750836</span></span><br><span class="line">value at adress p+<span class="number">1</span> is <span class="number">-858993460</span></span><br></pre></td></tr></table></figure>
 
 <p>##三：指针的类型，算数运算，void指针</p>
+<p>我们需要知道：指针是强类型的，这就意味着：你需要一个特定类型的指针变量来存放特定类型变量的地址。对于int*来说你就需要一个指向整型类型的指针来存放整型数据的地址，指向字符型的指针来存放字符型数据的地址，类似的如果我们拥有一个用户自定义的结构体或者类，我们就需要这种特定类型的指针。</p>
+<p>但是为什么指针需要强类型的呢？<br>指针变量不就是存放一个变量的地址吗？<br>为什么我们不能用一个通用的类型来存储所有变量的地址呢？<br><strong>答案是：</strong><br>我们不仅仅使用指针来存储数据的地址，同时也用它来解引用那些地址的内容(即可以利用指针来修改存在那些地址里面的数据)，这样我们就可以访问和修改这些地址对应的值了。<br>不同的数据类型有不同的大小，例如整型有四个字节大小存储，字符型有一个字节大小存储，浮点型有四个字节大小存储。这些数据不仅仅是大小上面的差异，在存储信息的方式上也有所不同。</p>
+<p>假如我们写了以下这句代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a = <span class="number">1025</span>;</span><br></pre></td></tr></table></figure>
+<p> 这句代码在内存的布局是这样的：<br> <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//   字节3    字节2    字节1     字节0</span></span><br><span class="line">     <span class="number">00000000</span> <span class="number">00000000</span> <span class="number">00000100</span> <span class="number">00000001</span></span><br><span class="line"><span class="comment">//地址：  203      202     201       200 </span></span><br></pre></td></tr></table></figure><br> 我们知道每个字节在内存中都是可以寻址的，我们假设<strong>字节0</strong>的地址为200，这四个字节必须是连续的，假设<strong>字节1</strong>的地址是201，然后是202。当整数在内存表示的时候，最左边的比特不存储数据，它代表的是数据的正负，也被称为符号位，剩下的31个位来存储数据，因为1025的二进制是<em>100 00000001</em>，所以1025在内存里的存储方式如上图所示。</p>
+<p>现在如果我们声明一个指针p指向整型变量，然后利用取地址符将a的地址赋给p,打印出p的值是什么？<br>打印出来的值是200，就是字节0的地址，也就是整型变量的起始地址是200。<br>如果我们想知道这个地址的值，就需要使用*p来解引用这个地址。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="type">int</span> a = <span class="number">1025</span>;</span><br><span class="line">    <span class="type">int</span> *p;</span><br><span class="line">    p = &amp;a;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;size of integer is %d bytes\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">int</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Address = %d, val = %d\n&quot;</span>, p ,*p);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Address = %d, val = %d\n&quot;</span>, p+<span class="number">1</span> ,*(p+<span class="number">1</span>));</span><br><span class="line">    <span class="type">char</span> *p0;</span><br><span class="line">    po = (<span class="type">char</span>*)p;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;size of integer is %d bytes\n&quot;</span>,<span class="keyword">sizeof</span>(<span class="type">char</span>));</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Address = %d, val = %d\n&quot;</span>, p0 ,*p0);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;Address = %d, val = %d\n&quot;</span>, p0+<span class="number">1</span> ,*(p0+<span class="number">1</span>));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>     size of integer is 4 bytes<br>     Address &#x3D; 4456036, val &#x3D; 1025;<br>     Address &#x3D; 4456040, val &#x3D; -858993460;<br>     size of integer is 1 bytes<br>     Address &#x3D; 4456036, val &#x3D; 1;<br>     Address &#x3D; 4456037, val &#x3D; 4;<br><strong>分析代码</strong>：<br>a的地址是随机分配的，所以p的值是随机的，<em>p的值就是1025，因为p是int类型的指针，所以p每一次加一都是加4个字节，而</em>(p+1)的值就是垃圾值。<br>将p的类型强行转为char类型，而char类型是一个字节，机器只会选取字节0作为p0的值，所以<em>p0的值为1，p0每次加一都是增加1个字节，所以</em>(p0+1)就变成了字节1的值，所以*(p0+1)&#x3D;4;<br><strong>void指针：</strong><br>void指针又称为通用指针，他不针对某个特定的数据类型，我们通过void来声明这种特定的指针类型，，然后把星号加在变量名前面，例如：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> *p;</span><br><span class="line"><span class="type">void</span> *p1;</span><br><span class="line">p1 = p;<span class="comment">//这里我们可以不需要强制转换，p1=p是合法的</span></span><br></pre></td></tr></table></figure>
+<p>但是由于这种指针没有映射到任何一种特定的数据类型，所以我们不能对它进行解引用，也就是说我们不能通过指针p1对p1存储的地址内部的值进行修改，*p1是会出现编译错误的，当然，对p1进行算数运算也是不可以的。</p>
 
       
     </div>
@@ -174,7 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 20px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 10px;">函数知识</a>
     </div>
   </div>
 
@@ -196,6 +206,14 @@
       <ul>
         
           <li>
+            <a href="/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/">union定义与用法</a>
+          </li>
+        
+          <li>
+            <a href="/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/">三目运算符</a>
+          </li>
+        
+          <li>
             <a href="/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第三节课内容</a>
           </li>
         
@@ -205,14 +223,6 @@
         
           <li>
             <a href="/2022/08/25/goto%E5%87%BD%E6%95%B0/">goto语句</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/25/assert%E5%87%BD%E6%95%B0/">assert函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/">第二节课代码补充</a>
           </li>
         
       </ul>
