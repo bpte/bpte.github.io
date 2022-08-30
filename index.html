@@ -93,15 +93,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    u16 ALL;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="type">int</span> len;</span><br><span class="line">    &#125;NODE; </span><br><span class="line">&#125;List;</span><br></pre></td></tr></table></figure>
-<p>用法：</p>
+        <p><strong>定义：</strong><br>  <em>union + 联合体名称 + {成员列表} + 变量列表</em><br>联合体是若干个数据元素共用结构构成的新的数据类型。<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> [联合体名称]</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    成员列表；</span><br><span class="line">&#125;联合体名<span class="type">_t</span>;</span><br><span class="line">具体例子：</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">list</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">float</span> a;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> b;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> c;</span><br><span class="line">&#125;<span class="type">temp_t</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>注意事项：</strong><br>1.联合体类型与结构体类型的定义方法很类似，只是将关键字由struct换成了union。但是他们在内存分配上却有着本质的区别，结构体变量所占用的内存长度是所有元素 所占用的内存总和，而联合体变量所占用的内存长度是其中最长元素的长度。<br>2.联合体类型提供了一种能够在同一内存处理不同类型数据的方法，适当使用联合体空类型可以节约内存空间。<br>3.与结构体一样，联合体引用元素的方法为<strong>联合体变量名.联合体元素</strong>。<br>4.与结构体一样，也可以定义联合体指针进行元素引用，<strong>联合体指针名-&gt;联合体元素</strong>。</p>
+<hr>
+<p><strong>用法：清零结构体</strong><br>如果我们想要把结构体中的数据同时清零，我们就可以通过联合体union特性来做到此事，我们首先定义一个联合体union，然后在其中放两个数据类型，一个是我们想要清零的结构体struct node，另外一个是类型为u16的ALL，如以下代码所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    u16 ALL;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="type">int</span> len;</span><br><span class="line">    &#125;NODE; </span><br><span class="line">&#125;List;</span><br></pre></td></tr></table></figure>
+<p>根据联合体的定义，只要我们的ALL数据类型比结构体struct node大，我们就可以直接使用以下的语句来实现此功能。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.ALL=<span class="number">0</span>; <span class="comment">//等价于List.NODE.data=0 和 List.NODE.len=0 这两条语句</span></span><br></pre></td></tr></table></figure>
-<p>此用法巧妙的利用联合体uion的定义将结构体NODE全体清零。</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl7ezen8c0000b4vq2dxkbfbc" data-title="union定义与用法" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl7g9ixp9000cx8vq983590k9" data-title="union定义与用法" class="article-share-link">分享</a>
       
       
       
@@ -145,7 +149,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl7ezen940001b4vq4rvkhehe" data-title="三目运算符" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl7g9ixpb000gx8vq40d58o5p" data-title="三目运算符" class="article-share-link">分享</a>
       
       
       
@@ -208,7 +212,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl7dkewo9000dtwvq4zbxhj48" data-title="第三节课内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl7g9ixpe000mx8vqe81dgw6d" data-title="第三节课内容" class="article-share-link">分享</a>
       
       
       
@@ -278,7 +282,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl7dkewo80009twvqak73bfwq" data-title="指针(基础)" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl7g9ixpc000ix8vqa5dadnhl" data-title="指针(基础)" class="article-share-link">分享</a>
       
       
       
@@ -323,7 +327,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl7dkewo40004twvq6gkw9uwn" data-title="goto语句" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl7g9ixp80009x8vq24hf9k0b" data-title="goto语句" class="article-share-link">分享</a>
       
       
       
@@ -370,7 +374,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl7dkewo30003twvqha7raqqd" data-title="assert函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl7g9ixof0001x8vq5u7p2anf" data-title="assert函数" class="article-share-link">分享</a>
       
       
       
@@ -422,7 +426,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl7dkewoe000qtwvq2qdlac40" data-title="第二节课代码补充" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl7g9ixpf000ox8vq0n7s7h5j" data-title="第二节课代码补充" class="article-share-link">分享</a>
       
       
       
@@ -475,7 +479,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl7dkewo9000ctwvq1ij6763e" data-title="条件编译" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl7g9ixpd000jx8vqcjzde40l" data-title="条件编译" class="article-share-link">分享</a>
       
       
       
@@ -532,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl7dkewo70008twvqdoek9tve" data-title="rand函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl7g9ixpa000ex8vqg1nkaa37" data-title="rand函数" class="article-share-link">分享</a>
       
       
       
@@ -590,7 +594,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/memset%E5%87%BD%E6%95%B0/" data-id="cl7dkewo50005twvqe7074ee8" data-title="memset函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/15/memset%E5%87%BD%E6%95%B0/" data-id="cl7g9ixp8000ax8vqh4ljfj85" data-title="memset函数" class="article-share-link">分享</a>
       
       
       

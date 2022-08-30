@@ -6,15 +6,15 @@
   
   <title>union定义与用法 | 一个编程爱好者的进阶之路</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="123456789union Node&amp;#123;    u16 ALL;    struct node    &amp;#123;        int data;        int len;    &amp;#125;NODE; &amp;#125;List; 用法： 1List.ALL&#x3D;0; &#x2F;&#x2F;等价于List.NODE.data&#x3D;0 和 List.NODE.len&#x3D;0 这两条语句 此用法巧妙的利用联合体uio">
+  <meta name="description" content="定义：  union + 联合体名称 + {成员列表} + 变量列表联合体是若干个数据元素共用结构构成的新的数据类型。代码示例： 1234567891011typedef union [联合体名称]&amp;#123;    成员列表；&amp;#125;联合体名_t;具体例子：typedef union list&amp;#123;    float a;    unsigned int b;    unsigned">
 <meta property="og:type" content="article">
 <meta property="og:title" content="union定义与用法">
 <meta property="og:url" content="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/index.html">
 <meta property="og:site_name" content="一个编程爱好者的进阶之路">
-<meta property="og:description" content="123456789union Node&amp;#123;    u16 ALL;    struct node    &amp;#123;        int data;        int len;    &amp;#125;NODE; &amp;#125;List; 用法： 1List.ALL&#x3D;0; &#x2F;&#x2F;等价于List.NODE.data&#x3D;0 和 List.NODE.len&#x3D;0 这两条语句 此用法巧妙的利用联合体uio">
+<meta property="og:description" content="定义：  union + 联合体名称 + {成员列表} + 变量列表联合体是若干个数据元素共用结构构成的新的数据类型。代码示例： 1234567891011typedef union [联合体名称]&amp;#123;    成员列表；&amp;#125;联合体名_t;具体例子：typedef union list&amp;#123;    float a;    unsigned int b;    unsigned">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-29T16:28:53.000Z">
-<meta property="article:modified_time" content="2022-08-29T16:35:02.240Z">
+<meta property="article:modified_time" content="2022-08-30T14:05:40.581Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
@@ -96,15 +96,19 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    u16 ALL;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="type">int</span> len;</span><br><span class="line">    &#125;NODE; </span><br><span class="line">&#125;List;</span><br></pre></td></tr></table></figure>
-<p>用法：</p>
+        <p><strong>定义：</strong><br>  <em>union + 联合体名称 + {成员列表} + 变量列表</em><br>联合体是若干个数据元素共用结构构成的新的数据类型。<br>代码示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> [联合体名称]</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    成员列表；</span><br><span class="line">&#125;联合体名<span class="type">_t</span>;</span><br><span class="line">具体例子：</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">list</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">float</span> a;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> b;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> c;</span><br><span class="line">&#125;<span class="type">temp_t</span>;</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>注意事项：</strong><br>1.联合体类型与结构体类型的定义方法很类似，只是将关键字由struct换成了union。但是他们在内存分配上却有着本质的区别，结构体变量所占用的内存长度是所有元素 所占用的内存总和，而联合体变量所占用的内存长度是其中最长元素的长度。<br>2.联合体类型提供了一种能够在同一内存处理不同类型数据的方法，适当使用联合体空类型可以节约内存空间。<br>3.与结构体一样，联合体引用元素的方法为<strong>联合体变量名.联合体元素</strong>。<br>4.与结构体一样，也可以定义联合体指针进行元素引用，<strong>联合体指针名-&gt;联合体元素</strong>。</p>
+<hr>
+<p><strong>用法：清零结构体</strong><br>如果我们想要把结构体中的数据同时清零，我们就可以通过联合体union特性来做到此事，我们首先定义一个联合体union，然后在其中放两个数据类型，一个是我们想要清零的结构体struct node，另外一个是类型为u16的ALL，如以下代码所示：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    u16 ALL;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="type">int</span> len;</span><br><span class="line">    &#125;NODE; </span><br><span class="line">&#125;List;</span><br></pre></td></tr></table></figure>
+<p>根据联合体的定义，只要我们的ALL数据类型比结构体struct node大，我们就可以直接使用以下的语句来实现此功能。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.ALL=<span class="number">0</span>; <span class="comment">//等价于List.NODE.data=0 和 List.NODE.len=0 这两条语句</span></span><br></pre></td></tr></table></figure>
-<p>此用法巧妙的利用联合体uion的定义将结构体NODE全体清零。</p>
-
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl7ezen8c0000b4vq2dxkbfbc" data-title="union定义与用法" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl7g9ixp9000cx8vq983590k9" data-title="union定义与用法" class="article-share-link">分享</a>
       
       
       
