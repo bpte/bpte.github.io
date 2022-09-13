@@ -71,6 +71,103 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-strcpy函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-13T14:41:14.000Z" itemprop="datePublished">2022-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="strcpy函数"><a href="#strcpy函数" class="headerlink" title="strcpy函数"></a>strcpy函数</h1><p>C语言头文件: &lt;string.h&gt;</p>
+<p>用法： char *strcpy(char *destination, const char *source);</p>
+<p>功能：strcpy函数将含有’\0’结束符的字符串复制到另一个地址空间</p>
+<p><strong>Notes：</strong><br>1.目标空间必须足够大，以确保能够放得下复制过来的字符串。<br>2.目标空间必须可变，即 char *destination不能用const修饰，并且目的地空间的字符串不能时常量字符串，常量字符串不能被修改。<br>3.源字符串必须含有’\0’。<br>4.strcpy函数会将源字符串的’\0’也拷贝到目的地空间</p>
+<p>返回值：返回的时目的字符串的首地址。</p>
+<p>模拟实现strcpy函数</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line"></span><br><span class="line">例子：</span><br><span class="line">```C</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl80fag3u000ar4vq0gkr730w" data-title="strcpy函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-strdup函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-13T14:40:46.000Z" itemprop="datePublished">2022-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/">strdup函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="strdup函数"><a href="#strdup函数" class="headerlink" title="strdup函数"></a>strdup函数</h1><p>C语言头文件：&lt;string.h&gt;</p>
+<p>用法：char* strdup(char *str);</p>
+<p>功能：将字符串拷贝到新建的位置处</p>
+<p><strong>Notes</strong>:<br>1.如果在Test函数里面使用strdup函数，但是出了Test函数依旧可以操作这段内存，并且可以在Test函数外面释放在Test内新建的内存空间。<br>2.由第1点引出的问题就是如何让函数得到的内存数据传出函数依旧可用，目前能想到的方法便是建造一个全局变量用来专门存储这段内存数据的首地址。<br>3.当不需要使用strdup函数返回的字符串时，需要用free来释放相应的空间，否则会产生内存泄漏。</p>
+<p>返回值：返回一个指针，指向为复制字符串分配的空间；如果分配空间失败，返回NULL值。</p>
+<p>strdup的工作原理：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="type">char</span>* _strcup(<span class="type">const</span> <span class="type">char</span>*s)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">size_t</span> len = <span class="built_in">strlen</span>(s) + <span class="number">1</span>;</span><br><span class="line">   <span class="type">void</span> *new = <span class="built_in">malloc</span>(len);</span><br><span class="line">   <span class="keyword">if</span>(new == <span class="literal">NULL</span>)</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">   <span class="keyword">return</span> (<span class="type">char</span>*)<span class="built_in">memcpy</span>(new,s,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span>* s =(<span class="type">char</span>*) <span class="string">&quot;good luck for you!&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* d;</span><br><span class="line">	d = _strdup(s);</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == d)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;分配空间失败！\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;字符串d的值为&#x27;%s&#x27;,字符串d的地址为%d,字符串s的地址为%d\n&quot;</span>, d, &amp;d, &amp;s);</span><br><span class="line">	<span class="built_in">free</span>(d);</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>     字符串d的值为’good luck for you!’,字符串d的地址为19922568,字符串s的地址为19922580</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl80fag3x000fr4vq0f7e1li9" data-title="strdup函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-strcmp函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" class="article-date">
@@ -95,7 +192,8 @@
       
         <h1 id="strcmp函数"><a href="#strcmp函数" class="headerlink" title="strcmp函数"></a>strcmp函数</h1><p>C语言头文件：&lt;string.h&gt;<br>C++头文件：<cstring></p>
 <p>用法：int strcmp( const char<em>s1, const char</em>s2);</p>
-<p>strcmp函数用来比较字符串的大小。<br>比较规则：<br>若s1&gt;s2,返回为正数。<br>若s1&#x3D;s2,返回为0。<br>若s1&lt;s2,返回为负数。<br>即两个字符串自左向右逐个字符按照ASCLL码进行比较，直到出现不同字符或者出现\0为止。</p>
+<p>功能：用来比较字符串的大小。<br>比较规则：<br>若s1&gt;s2,返回为正数。<br>若s1&#x3D;s2,返回为0。<br>若s1&lt;s2,返回为负数。<br>即两个字符串自左向右逐个字符按照ASCLL码进行比较，直到出现不同字符或者出现\0为止。</p>
+<p>返回值；返回s1字符与s2字符的差值。</p>
 <p>实现原理：<br>首先strcmp()先将s1的第一个字符减去s2第二个字符，如果两者的差值为0，就继续比较s1和s2的第二个字符，直到出现\0或者差值不为零为止，如果差值不为零，就将差值返回。例如字符”Ac”和”比较则会返回字符”A”(65)和字符”b”(98)的差值-33。</p>
 <p>代码示例：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *s1 = <span class="string">&quot;compare!&quot;</span>;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s2 = <span class="string">&quot;compare!&quot;</span>;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s3 = <span class="string">&quot;comPare!&quot;</span>;</span><br><span class="line">	<span class="type">int</span> i = <span class="built_in">strcmp</span>(s1, s2);</span><br><span class="line">	<span class="type">int</span> j = <span class="built_in">strcmp</span>(s2, s3);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s1=s2\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s1=%s&quot;</span>,s1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=%s&quot;</span>, s2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=s3\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (j &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=%s&quot;</span>, s2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s3=%s&quot;</span>, s3);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -104,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl7m90rha0009c8vqfnth6dhp" data-title="strcmp函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl80fag3u0009r4vqbhly7bnm" data-title="strcmp函数" class="article-share-link">分享</a>
       
       
       
@@ -152,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl7m90rhb000cc8vqd5r7864d" data-title="union定义与用法" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl80fag3y000ir4vqbheogwd5" data-title="union定义与用法" class="article-share-link">分享</a>
       
       
       
@@ -196,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl7m90rhc000dc8vq318l3grc" data-title="三目运算符" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl80fag4k000kr4vq54subdoc" data-title="三目运算符" class="article-share-link">分享</a>
       
       
       
@@ -259,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl7m90rif000jc8vq52st83w1" data-title="第三节课内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl80fag4m000rr4vq5b7ydhyh" data-title="第三节课内容" class="article-share-link">分享</a>
       
       
       
@@ -367,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl7m90rid000fc8vq0di4hv06" data-title="指针(基础)" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl80fag4l000nr4vqfrd26tci" data-title="指针(基础)" class="article-share-link">分享</a>
       
       
       
@@ -412,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl7m90rh70004c8vq51xkckb1" data-title="goto语句" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl80fag3s0006r4vq7qpcblu2" data-title="goto语句" class="article-share-link">分享</a>
       
       
       
@@ -459,7 +557,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl7m90rh70003c8vq7z1s5di9" data-title="assert函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl80fag3r0004r4vqelyp3r92" data-title="assert函数" class="article-share-link">分享</a>
       
       
       
@@ -511,121 +609,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl7m90rig000lc8vqb8mj97ue" data-title="第二节课代码补充" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl80fag4n000ur4vqemc4al36" data-title="第二节课代码补充" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-条件编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" class="article-date">
-  <time class="dt-published" datetime="2022-08-17T20:30:11.000Z" itemprop="datePublished">2022-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/">条件编译</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>##条件编译常见的有以下三种形式：<br>###形式一：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 1      <span class="comment">//如果条件为真(1代表条件为真)，执行code1语句，否则执行code2语句</span></span></span><br><span class="line">  code1</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 1     <span class="comment">//如果if后面为1执行code，为0则不执行code</span></span></span><br><span class="line">  code</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###形式二：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> max 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> max    <span class="comment">//如果定义了max就执行code1，没有定义max就执行code2</span></span></span><br><span class="line">  code1       <span class="comment">//我们这里在上面对max进行了宏定义，所以此时执行code1</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> max     <span class="comment">//如果定义了max执行code，没有定义则不执行code</span></span></span><br><span class="line">  code         <span class="comment">//我们这里并没有对max进行宏定义，所以不执行code</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###形式三：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MIN     <span class="comment">//如果没有定义MIN执行code1，定义了MIN则执行code2</span></span></span><br><span class="line">  code1         <span class="comment">//我们这里我们这里并没有对MIN进行宏定义，所以执行code2</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MIN 0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MIN    <span class="comment">//如果没有定义MIN执行code，定义了MIN就不执行code</span></span></span><br><span class="line">  code         <span class="comment">//我们这里在上面对MIN进行了宏定义，所以此时不执行code</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###头文件的条件编译：<br>编写C语言的头文件，为了防止头文件被重复编译，我们使用了条件编译</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _FUN_H   <span class="comment">// 如果没有定义_FUN_H  </span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _FUN_H   <span class="comment">// 定义一个_FUN_H  </span></span></span><br><span class="line"></span><br><span class="line">   code     <span class="comment">//头文件的内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span>    <span class="comment">//头文件的最后一行，代表头文件的结束</span></span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl7m90rie000hc8vqav532j3b" data-title="条件编译" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-rand函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/15/rand%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-08-15T15:28:48.000Z" itemprop="datePublished">2022-08-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/15/rand%E5%87%BD%E6%95%B0/">rand函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#rand()函数</p>
-<p>头文件：&lt;stdlib.h&gt;<br>用法：int rand(void)</p>
-<p>下面是一个生成随机数的例子</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">int</span> a = rand();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都<br>是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。</p>
-<p>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，<br>每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
-<p>###播种<br>我们可以通过srand()函数进行重新“播种”，这样种子就会变化。srand()的用法为：<br>void srand(unsighed int seed)</p>
-<p>它需要一个unsighed int类型的参数。通常情况下，我们使用时间作为参数，只要每次播种的时间不同，播种出来的结果(即随机数)自然也不相同。</p>
-<p>使用&lt;time.h&gt;头文件里的time()可以得到目前的时间(精确到秒)，就像下面这样：<br>srand((unsighed)time(NULL))</p>
-<p>###生成一定范围的随机数</p>
-<p>在实际的应用中，我们经常采用取模的方式生成一定范围的随机数<br>例如：<br>rand()%5;   &#x2F;&#x2F;代表此时生成的随机数的范围是0~4，一旦大于5，就会被5整除</p>
-<p>rand()%10 + 15;   &#x2F;&#x2F;产生15~24的随机数</p>
-<p>###连续生成随机数<br>有时候我们需要连续生成多个随机数，最容易想到的方法就是利用循环<br>方法一：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> a;</span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line"> &#123;</span><br><span class="line">   srand((unsighed)time(<span class="literal">NULL</span>));</span><br><span class="line">   a = rand();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">输出：<span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span></span><br></pre></td></tr></table></figure>
-<p> 分析：这里没有出现连续随机数的原因是for循环运行的速度太快了，连一秒的时间都不到就运行完了，而time()函数是指精确到秒的，所以所有的种子都一样。如果需要生成连续的随机数，把srand((unsighed)time(NULL))放到for循环的外面就可以了，如方法二所示：</p>
-<p>方法二：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="type">int</span> a;</span><br><span class="line">  srand((unsighed)time(<span class="literal">NULL</span>));</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">  &#123;</span><br><span class="line">    a = rand();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line">输出：<span class="number">664229233</span> <span class="number">496172995</span> <span class="number">2049999013</span> <span class="number">713627486</span> <span class="number">767289124</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl7m90rha0008c8vq1r1794u3" data-title="rand函数" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
 
     </footer>
   </div>
@@ -685,6 +673,14 @@
       <ul>
         
           <li>
+            <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/">strdup函数</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/04/strcmp%E5%87%BD%E6%95%B0/">strcmp函数</a>
           </li>
         
@@ -694,14 +690,6 @@
         
           <li>
             <a href="/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/">三目运算符</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第三节课内容</a>
-          </li>
-        
-          <li>
-            <a href="/2022/08/25/%E6%8C%87%E9%92%88/">指针(基础)</a>
           </li>
         
       </ul>
