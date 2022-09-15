@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>strstr函数 | 一个编程爱好者的进阶之路</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="strstr函数C语言头文件：&lt;string.h&gt; 用法：char* strstr(const char*str1, const char*str2); 功能：strstr(s1,s2)表示，s2为子串，查看s1中是否存在s1，存在则返回首次出现的地址，否则返回NULL。 返回值：返回char*指针(返回指向str1中第一次出现str2的指针)，如果str2不是str1的一部分，就返回">
+<meta property="og:type" content="article">
+<meta property="og:title" content="strstr函数">
+<meta property="og:url" content="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:site_name" content="一个编程爱好者的进阶之路">
+<meta property="og:description" content="strstr函数C语言头文件：&lt;string.h&gt; 用法：char* strstr(const char*str1, const char*str2); 功能：strstr(s1,s2)表示，s2为子串，查看s1中是否存在s1，存在则返回首次出现的地址，否则返回NULL。 返回值：返回char*指针(返回指向str1中第一次出现str2的指针)，如果str2不是str1的一部分，就返回">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-15T13:36:27.000Z">
+<meta property="article:modified_time" content="2022-09-15T15:41:29.679Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="函数知识">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="一个编程爱好者的进阶之路" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一个编程爱好者的进阶之路</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-strstr函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/15/strstr%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-15T13:36:27.000Z" itemprop="datePublished">2022-09-15</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      strstr函数
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="strstr函数"><a href="#strstr函数" class="headerlink" title="strstr函数"></a>strstr函数</h1><p>C语言头文件：&lt;string.h&gt;</p>
+<p>用法：<code>char* strstr(const char*str1, const char*str2);</code></p>
+<p>功能：strstr(s1,s2)表示，s2为子串，查看s1中是否存在s1，存在则返回首次出现的地址，否则返回NULL。</p>
+<p>返回值：返回char*指针(返回指向str1中第一次出现str2的指针)，如果str2不是str1的一部分，就返回空指针</p>
+<p>strstr函数的实现：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">my_strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert((str1 &amp;&amp; str2));</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s1 = str1;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s2 = str2;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* p = str1;</span><br><span class="line">	<span class="keyword">while</span> (*p != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		s1 = p;</span><br><span class="line">		s2 = str2;</span><br><span class="line">		<span class="keyword">while</span> ((*s1 != <span class="string">&#x27;\0&#x27;</span>) &amp;&amp; (*s2 != <span class="string">&#x27;\0&#x27;</span>) &amp;&amp; (*s1 == *s2))</span><br><span class="line">		&#123;</span><br><span class="line">			s1++;</span><br><span class="line">			s2++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (*s2 == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="type">char</span>*)p;</span><br><span class="line">		&#125;</span><br><span class="line">		p++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> s[] = <span class="string">&quot;char is ok&quot;</span>;</span><br><span class="line">	<span class="type">char</span> *d = my_strstr(s, <span class="string">&quot;is&quot;</span>);</span><br><span class="line">	<span class="type">char</span>* m = <span class="built_in">strstr</span>(s, <span class="string">&quot;is&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s %s\n&quot;</span>, d, m);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strstr</span><span class="params">(<span class="type">const</span> <span class="type">char</span>* str1, <span class="type">const</span> <span class="type">char</span>* str2)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert((str1 &amp;&amp; str2));</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s1 = str1;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s2 = str2;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* p = str1;</span><br><span class="line">	<span class="keyword">while</span> (*p != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		s1 = p;</span><br><span class="line">		s2 = str2;</span><br><span class="line">		<span class="keyword">while</span> ((*s1 != <span class="string">&#x27;\0&#x27;</span>) &amp;&amp; (*s2 != <span class="string">&#x27;\0&#x27;</span>) &amp;&amp; (*s1 == *s2))</span><br><span class="line">		&#123;</span><br><span class="line">			s1++;</span><br><span class="line">			s2++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (*s2 == <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> (<span class="type">char</span>*)p;</span><br><span class="line">		&#125;</span><br><span class="line">		p++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8380pze000ne8vqgecw74t7" data-title="strstr函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">前一篇</strong>
+      <div class="article-nav-title">
+        
+          strncpy函数
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">strcpy函数</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/15/strlen%E5%87%BD%E6%95%B0/">strlen</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/15/strncpy%E5%87%BD%E6%95%B0/">strncpy函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/15/strstr%E5%87%BD%E6%95%B0/">strstr函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
