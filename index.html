@@ -71,6 +71,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-memcpy函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-18T14:39:18.000Z" itemprop="datePublished">2022-09-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl87g2s750008isvq987m6qrx" data-title="memcpy函数" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-sprintf函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" class="article-date">
@@ -104,13 +142,13 @@
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> buf[<span class="number">10</span>] = &#123;&#125;;</span><br><span class="line">	<span class="built_in">sprintf</span>(buf, <span class="string">&quot;The length of the spring is more than 10!&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s \n&quot;</span>, buf);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//以上的代码在运行完之后就引发了异常，这是因为写入的字符串的长度大于buf的长度，造成了缓冲区溢出。</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>产生10个100以内的随机数并输出</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	srand((<span class="type">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">100</span>] = &#123;&#125;;</span><br><span class="line">	<span class="type">int</span> name = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		name += <span class="built_in">sprintf</span>(<span class="built_in">string</span> + name , <span class="string">&quot;%d,&quot;</span>, rand() % <span class="number">100</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span>[name - <span class="number">1</span>] = (<span class="type">char</span>)<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="built_in">string</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	srand((<span class="type">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">100</span>] = &#123;&#125;;</span><br><span class="line">	<span class="type">int</span> name = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		name += <span class="built_in">sprintf</span>(<span class="built_in">string</span> + name , <span class="string">&quot;%d,&quot;</span>, rand() % <span class="number">100</span>);</span><br><span class="line"><span class="comment">//这里sprintf的第一个参数是string + name的原因是为了使string数组里面的值排好序，</span></span><br><span class="line"><span class="comment">//假如当rand函数随机生成一个数48时，4存储在string[0],8就存储在string[1]里面,&#x27;,&#x27;号</span></span><br><span class="line"><span class="comment">//存储在string[2]里面，相当于每次拷贝一个值，name就加一。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span>[name - <span class="number">1</span>] = (<span class="type">char</span>)<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="built_in">string</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>输出：<br>95，6，22，54，65，62，84，24，74</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl86t7vqz0005igvq9m0f8y9t" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl87g2s78000eisvq2bvv9jme" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
@@ -164,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl86t7vrf000qigvq10zhalbz" data-title="strlen" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl87g2s7d000misvq5g7ma4jw" data-title="strlen" class="article-share-link">分享</a>
       
       
       
@@ -207,13 +245,13 @@
 <h3 id="strncpy函数与strcpy函数的区别"><a href="#strncpy函数与strcpy函数的区别" class="headerlink" title="strncpy函数与strcpy函数的区别"></a>strncpy函数与strcpy函数的区别</h3><p>1.strcpy就是用来复制字符串的，而strncpy函数用来复制字符串的前n个字符。<br>2.不像strcpy函数，strncpy函数不会向dest追加’\0’。</p>
 <h2 id="strncpy函数实现："><a href="#strncpy函数实现：" class="headerlink" title="strncpy函数实现："></a>strncpy函数实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">my_strncpy</span><span class="params">(<span class="type">char</span>* dest, <span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert((dest) &amp;&amp; (src));</span><br><span class="line">	<span class="type">char</span>* p = dest;</span><br><span class="line">	<span class="keyword">while</span> (n)</span><br><span class="line">	&#123;</span><br><span class="line">		*dest = *src;</span><br><span class="line">		dest++;</span><br><span class="line">		src++;</span><br><span class="line">		n--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strncpy</span><span class="params">(<span class="type">char</span>* dest, <span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> n)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> s[<span class="number">10</span>] = &#123; <span class="string">&#x27;s&#x27;</span>,<span class="string">&#x27;d&#x27;</span>,<span class="string">&#x27;f&#x27;</span>,<span class="string">&#x27;g&#x27;</span>,<span class="string">&#x27;h&#x27;</span>,<span class="string">&#x27;j&#x27;</span>,<span class="string">&#x27;q&#x27;</span>,<span class="string">&#x27;w&#x27;</span>,<span class="string">&#x27;r&#x27;</span>,<span class="string">&#x27;\0&#x27;</span> &#125;;</span><br><span class="line">	<span class="type">char</span> d[<span class="number">5</span>] = &#123; <span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>,<span class="string">&#x27;C&#x27;</span>,<span class="string">&#x27;D&#x27;</span>,<span class="string">&#x27;F&#x27;</span> &#125;;</span><br><span class="line"></span><br><span class="line">	my_strncpy(s, d, <span class="number">3</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s);</span><br><span class="line">	<span class="built_in">strncpy</span>(s, d, <span class="number">5</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strncpy</span><span class="params">(<span class="type">char</span>* dest, <span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert((dest) &amp;&amp; (src));</span><br><span class="line">	<span class="type">char</span>* p = dest;</span><br><span class="line">	<span class="keyword">while</span> (n)</span><br><span class="line">	&#123;</span><br><span class="line">		*dest = *src;</span><br><span class="line">		dest++;</span><br><span class="line">		src++;</span><br><span class="line">		n--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br>ABCghjqwr<br>ABCDFjqwr</p>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strncpy</span><span class="params">(<span class="type">char</span>* dest, <span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> n)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> s1[] = <span class="string">&quot;sdfghjqwer&quot;</span>;</span><br><span class="line">    <span class="type">char</span> s2[] = <span class="string">&quot;ABCDEF&quot;</span>;</span><br><span class="line"></span><br><span class="line">    my_strncpy((<span class="type">char</span>*)s1, s2, <span class="number">3</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s1);</span><br><span class="line">    <span class="built_in">strncpy</span>(s1, s2, <span class="number">5</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, s1);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strncpy</span><span class="params">(<span class="type">char</span>* dest, <span class="type">const</span> <span class="type">char</span>* src, <span class="type">int</span> n)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert((dest) &amp;&amp; (src));</span><br><span class="line">	<span class="type">char</span>* p = dest;</span><br><span class="line">	<span class="keyword">while</span> (n)</span><br><span class="line">	&#123;</span><br><span class="line">		*dest = *src;</span><br><span class="line">		dest++;</span><br><span class="line">		src++;</span><br><span class="line">		n--;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>ABCghjqwer<br>ABCDEjqwer</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl86t7vrc000kigvq0e0l0ssb" data-title="strncpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl87g2s7d000oisvq896ogicl" data-title="strncpy函数" class="article-share-link">分享</a>
       
       
       
@@ -258,7 +296,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl86t7vrh000wigvqc7mt5cwu" data-title="strstr函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl87g2s7e000qisvqgqk9e751" data-title="strstr函数" class="article-share-link">分享</a>
       
       
       
@@ -308,7 +346,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl86t7vrd000migvq6zsz69s2" data-title="strcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl87g2s7b000iisvq0inx0hxf" data-title="strcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -356,7 +394,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl86t7vre000oigvqfxjvg6z5" data-title="strdup函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl87g2s7c000kisvq9evpg83u" data-title="strdup函数" class="article-share-link">分享</a>
       
       
       
@@ -403,7 +441,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl86t7vrb000jigvqafw63mx1" data-title="strcmp函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl87g2s7a000gisvqf84z6m4p" data-title="strcmp函数" class="article-share-link">分享</a>
       
       
       
@@ -451,7 +489,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl86t7vrg000uigvqhah9999d" data-title="union定义与用法" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl87g2s7f000sisvq2tw357dt" data-title="union定义与用法" class="article-share-link">分享</a>
       
       
       
@@ -495,74 +533,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl86t7vrg000sigvqbxxtgh0n" data-title="三目运算符" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl87g2s7f000uisvq3fa94j98" data-title="三目运算符" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-第三节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
-  <time class="dt-published" datetime="2022-08-28T16:34:24.000Z" itemprop="datePublished">2022-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第三节课内容</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>##一：归并排序</p>
-<ul>
-<li><p>递归函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">recursion_sort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> end)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (head == end)  <span class="comment">//递归的边界：当只有一个值时就不做任何处理</span></span><br><span class="line">	&#123;                 <span class="comment">//因为是排序，所以两个数以上才能排序，一个数不用排序，直接返回即可</span></span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> mid = (head + end) &gt;&gt; <span class="number">1</span>;   <span class="comment">//等价与mid = (head + end) / 2;</span></span><br><span class="line">	recursion_sort(arr, head, mid);      <span class="comment">//对数组左半部分值进行递归，当执行完这行代码，我们认为数组左半部分的数从小到大已经排好</span></span><br><span class="line">	recursion_sort(arr, mid + <span class="number">1</span>, end);   <span class="comment">//对数组右半部分值进行递归，当执行完这行代码，我们认为数组右半部分的数从小到大已经排好</span></span><br><span class="line">	merge_arr(arr, head, mid, end);      <span class="comment">//让左右两个有序的数组进行融合，变成以一个有序的数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>merge函数</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">merge_arr</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> mid, <span class="type">int</span> end)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> assist_arr[Arr_Len] = &#123;&#125;;   <span class="comment">//构造辅助数组</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;   <span class="comment">//辅助函数的下标</span></span><br><span class="line">	<span class="type">int</span> left = head;  <span class="comment">//传进来数组的左半部分的第一个下标</span></span><br><span class="line">	<span class="type">int</span> right = mid + <span class="number">1</span>;  <span class="comment">//传进来数组的右半部分的第一个下标</span></span><br><span class="line">	<span class="keyword">while</span> ((left &lt;= mid) &amp;&amp; (right &lt;= end)) <span class="comment">//判断条件是左半部分的下标与右半部分的下标是否越界</span></span><br><span class="line">	&#123;	                                    <span class="comment">//如果越界，就代表那一部分的值都已经全部传进辅助数组，此时就会跳出循环</span></span><br><span class="line">		assist_arr[i++] = arr[left] &gt;= arr[right] ? arr[right++] : arr[left++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= mid) <span class="comment">//如果右半部分下标越界，就将左半部分数组的值依次传进去</span></span><br><span class="line">	&#123;</span><br><span class="line">		assist_arr[i++] = arr[left++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (right &lt;= end) <span class="comment">//如果左半部分下标越界，就将右半部分数组的值依次传进去</span></span><br><span class="line">	&#123;</span><br><span class="line">		assist_arr[i++] = arr[right++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; end - head+<span class="number">1</span>; ++j)  <span class="comment">//将辅助数组的值拷贝给arr，这样就实现了将传进来的两大部分有序排在一起</span></span><br><span class="line">	&#123;</span><br><span class="line">		arr[head + j] = assist_arr[j];</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>非递归方式实现归并排序</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">none_recursion_sort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> len)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> ((arr == <span class="literal">NULL</span>) || (len &lt; <span class="number">2</span>)) <span class="comment">//判断传进数组的元素个数，如果只有一个元素或没有元素，就不需要进行排序，直接返回即可</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">return</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> membersize = <span class="number">1</span>;   <span class="comment">//左半部分有序元素的个数，值为2，4，8...</span></span><br><span class="line">	<span class="type">int</span> length = len;  <span class="comment">//传进来数组的长度</span></span><br><span class="line">	<span class="keyword">while</span> (membersize &lt; length)  <span class="comment">//将数组分组，第一次循环两个一组（一个左边，一个右边，利用merge_arr函数将左右两边排好序），第二次循环四个一组（两个左边，两个右边，利用merge_arr函数将左右两边排好序）...直到最后将数组所有元素排好序为止</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> left = <span class="number">0</span>; <span class="comment">//左半部分下标的序号</span></span><br><span class="line">		<span class="keyword">while</span> (left &lt; length) </span><br><span class="line">		&#123;</span><br><span class="line">			<span class="type">int</span> mid = left + membersize - <span class="number">1</span>; <span class="comment">//左半部分最后一个下标的序号</span></span><br><span class="line">			<span class="keyword">if</span> (mid &gt;= length)  </span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			<span class="type">int</span> right = (mid + membersize) &gt; (length - <span class="number">1</span>) ? (length - <span class="number">1</span>) : (mid + membersize); <span class="comment">//右半部分数组最后一个下标的序号，如果（两倍mid）的值大于数组的长度的话，最后一个下标的序号就是数组的最终长度</span></span><br><span class="line">			merge_arr(arr, left, mid, right); </span><br><span class="line">			left = right + <span class="number">1</span>;  <span class="comment">//将左半部分的下标的序号变为右半部分最后一个下标序号加一</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (membersize &gt; length)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		membersize &lt;&lt;= <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>题目：在一个数组中，一个数左边比他小的数的总和，叫数的小和，所有数的小和累加起来，叫数组小和。求一个数组的小和。<br>例子：[1,3,4,2,5]<br>  1左边比1小的数：没有<br>  3左边比3小的数：1<br>  4左边比4小的数：1，3<br>  2左边比2小的数：1<br>  5左边比5小的数：1，3，4，2<br>  所有数组的小和为：1+1+3+1+1+3+4+2&#x3D;16<br><strong>代码</strong></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">recursion_sort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> end)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line">	<span class="keyword">if</span> (head == end)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> mid = (head + end) &gt;&gt; <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> left = recursion_sort(arr, head, mid);</span><br><span class="line">	<span class="type">int</span> right= recursion_sort(arr, mid + <span class="number">1</span>, end);</span><br><span class="line">	sum = merge(arr, head, mid, end);</span><br><span class="line">	<span class="keyword">return</span> left + right + sum;</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">int</span> <span class="title function_">merge</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> mid, <span class="type">int</span> end)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> assist_arr[ARR_LEN] = &#123;&#125;;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> left = head;</span><br><span class="line">	<span class="type">int</span> right = mid + <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">while</span> ((left &lt;= mid) &amp;&amp; (right &lt;= end))</span><br><span class="line">	&#123;</span><br><span class="line">		sum += arr[left] &lt; arr[right] ? (arr[left] * (end - right + <span class="number">1</span>)) : <span class="number">0</span>;</span><br><span class="line">		assist_arr[i++] = arr[left] &lt;= arr[right] ? arr[left++] : arr[right++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (left &lt;= mid)</span><br><span class="line">	&#123;</span><br><span class="line">		assist_arr[i++] = arr[left++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (right &lt;= end)</span><br><span class="line">	&#123;</span><br><span class="line">		assist_arr[i++] = arr[right++];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; end - head + <span class="number">1</span>; ++j)</span><br><span class="line">	&#123;</span><br><span class="line">		arr[head + j] = assist_arr[j];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<hr>
-<p>##二：随机快排</p>
-<ul>
-<li><p>快速排序</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">quick_sort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> end, <span class="type">int</span> num)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> small = head - <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> number = arr[num];</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> t = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i &lt; end+<span class="number">1</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &lt;= number)</span><br><span class="line">		&#123;</span><br><span class="line">			t = arr[small + <span class="number">1</span>];</span><br><span class="line">			arr[small + <span class="number">1</span>] = arr[i];</span><br><span class="line">			arr[i] = t;</span><br><span class="line">			small++;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>荷兰旗问题</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> head, <span class="type">int</span> end, <span class="type">int</span> num)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> less = head - <span class="number">1</span>;</span><br><span class="line">	<span class="type">int</span> more = end + <span class="number">1</span> ;</span><br><span class="line">	<span class="type">int</span> number = arr[num];</span><br><span class="line">	<span class="type">int</span> i = head;</span><br><span class="line">	<span class="type">int</span> t = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (i&lt;more)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] == number)</span><br><span class="line">		&#123;</span><br><span class="line">			++i;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span> (arr[i] &lt; number)</span><br><span class="line">		&#123;</span><br><span class="line">			t = arr[i];</span><br><span class="line">			arr[i] = arr[less + <span class="number">1</span>];</span><br><span class="line">			arr[less + <span class="number">1</span>] = t;</span><br><span class="line">			++i;</span><br><span class="line">			less++;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(arr[i] &gt; number)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (i == more)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">break</span>;</span><br><span class="line">			&#125;</span><br><span class="line">			t = arr[i];</span><br><span class="line">			arr[i] = arr[more - <span class="number">1</span>];</span><br><span class="line">			arr[more - <span class="number">1</span>] = t;</span><br><span class="line">			more--;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl86t7vrj0012igvqbdyc0fdg" data-title="第三节课内容" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
 
     </footer>
   </div>
@@ -622,6 +597,10 @@
       <ul>
         
           <li>
+            <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
           </li>
         
@@ -635,10 +614,6 @@
         
           <li>
             <a href="/2022/09/15/strstr%E5%87%BD%E6%95%B0/">strstr函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
           </li>
         
       </ul>
