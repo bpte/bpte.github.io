@@ -6,15 +6,15 @@
   
   <title>sprintf函数 | 一个编程爱好者的进阶之路</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="sprintf函数C语言头文件： &lt;stdio.h&gt; 用法：int sprintf(char *str, const char*format,... )">
+  <meta name="description" content="sprintf函数C语言头文件： &lt;stdio.h&gt; 用法：int sprintf(char *str, const char*format,... ) 功能：将格式化的数据写入某个字符串缓冲区。 返回值：字符串长度 sprintf函数与printf函数的区别:sprintf的作用是将一个格式化的字符串输出到一个目的字符串中，而printf的作用是将一个格式化的字符串输出到屏幕。spr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="sprintf函数">
 <meta property="og:url" content="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="一个编程爱好者的进阶之路">
-<meta property="og:description" content="sprintf函数C语言头文件： &lt;stdio.h&gt; 用法：int sprintf(char *str, const char*format,... )">
+<meta property="og:description" content="sprintf函数C语言头文件： &lt;stdio.h&gt; 用法：int sprintf(char *str, const char*format,... ) 功能：将格式化的数据写入某个字符串缓冲区。 返回值：字符串长度 sprintf函数与printf函数的区别:sprintf的作用是将一个格式化的字符串输出到一个目的字符串中，而printf的作用是将一个格式化的字符串输出到屏幕。spr">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-09-15T13:38:54.000Z">
-<meta property="article:modified_time" content="2022-09-16T16:16:54.634Z">
+<meta property="article:modified_time" content="2022-09-18T03:58:50.479Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="函数知识">
 <meta name="twitter:card" content="summary">
@@ -98,11 +98,22 @@
       
         <h2 id="sprintf函数"><a href="#sprintf函数" class="headerlink" title="sprintf函数"></a>sprintf函数</h2><p>C语言头文件： &lt;stdio.h&gt;</p>
 <p>用法：<code>int sprintf(char *str, const char*format,... )</code></p>
+<p>功能：将格式化的数据写入某个字符串缓冲区。</p>
+<p>返回值：字符串长度</p>
+<p>sprintf函数与printf函数的区别:<br>sprintf的作用是将一个格式化的字符串输出到一个目的字符串中，而printf的作用是将一个格式化的字符串输出到屏幕。sprintf的第一个参数应该是目的字符串，如果不指定这个参数，执行过程中出现”该程序产生非法操作，即将被关闭……”的提示。</p>
+<p>sprintf常见应用：<br><code>sprintf(s, &quot;%d&quot;, 123); //把整数123打印成一个字符串保存到s中</code>  </p>
+<p><strong>Note：</strong><br>C语言对数组操作时不检查数组的长度，如果str的长度不够，sprintf()很容易造成缓冲溢出，带来意想不到的后果，黑客们常常用这个弱点去攻击看上去安全的系统。</p>
+<p>错误使用示例：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> buf[<span class="number">10</span>] = &#123;&#125;;</span><br><span class="line">	<span class="built_in">sprintf</span>(buf, <span class="string">&quot;The length of the spring is more than 10!&quot;</span>);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s \n&quot;</span>, buf);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//以上的代码在运行完之后就引发了异常，这是因为写入的字符串的长度大于buf的长度，造成了缓冲区溢出。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><p>产生10个100以内的随机数并输出</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	srand((<span class="type">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">100</span>] = &#123;&#125;;</span><br><span class="line">	<span class="type">int</span> name = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		name += <span class="built_in">sprintf</span>(<span class="built_in">string</span> + name , <span class="string">&quot;%d,&quot;</span>, rand() % <span class="number">100</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">string</span>[name - <span class="number">1</span>] = (<span class="type">char</span>)<span class="string">&quot;\n&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="built_in">string</span>);</span><br><span class="line">	</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>95，6，22，54，65，62，84，24，74</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl867sw7o0009i0vq7h3g8fu7" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl86t7vqz0005igvq9m0f8y9t" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
