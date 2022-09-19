@@ -71,6 +71,101 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-结构体数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T12:59:38.000Z" itemprop="datePublished">2022-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/">结构体数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><p>结构体数组是指在一个数组中，所有的元素都是同一结构体类型的变量。</p>
+<p>在实际应用中，经常使用结构体数组来表示具有相同数据结构的一个群体。</p>
+<p>结构体数组和整型数组都差不多，不同的地方就是在于每一个数组的元素都是一个结构体数组，他们都有各自的成员项。</p>
+<p>定义：结构体数组的定义与结构体变量类似，只需要说明它为数组类型即可。</p>
+<p>例如：一个班级的学生档案</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span>* name;</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> source;</span><br><span class="line">&#125;stu[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p>结构体数组的初始化：<br><code>stu[3] = &#123;&#123;100, "wang", 'F', 89&#125;, &#123;200,"li",'F',43&#125;, &#123;300,"wang",'T'.70&#125;&#125;;</code></p>
+<p>对结构体成员的引用：<br>用<em>数组名.成员名</em>即可引用<br>例子： <code>stu[3].sex = T</code></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl88yow98001dxgvqfgx4hx2f" data-title="结构体数组" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-lielly-unlikely函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T12:57:49.000Z" itemprop="datePublished">2022-09-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/">lielly/unlikely函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="likely-x2F-unlikely函数"><a href="#likely-x2F-unlikely函数" class="headerlink" title="likely&#x2F;unlikely函数"></a>likely&#x2F;unlikely函数</h1><p>likely()与unlikely()是内核中定义的两个宏。位于&#x2F;include&#x2F;linux&#x2F;compiler.h中<br>具体定义如下：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> likely(x)   _builtin_expect(!!(x),1)</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> unlikely(x)   _builtin_expect(!!(x),0)</span></span><br></pre></td></tr></table></figure>
+<p>我们可以看到其实likely与unlikely函数就是对_builtin_expect的一个封装而已，_builtin_expect这个指令是gcc引入的。该函数作用是允许程序员将最有可能执行的分支告诉编辑器，来辅助系统进行分支预测。</p>
+<p>它的用法为： _builtin_expect(EXP,N)。意思是：EXP &#x3D;&#x3D; N的概率很大。那么likely与unlikely这两句的具体含义是：<br> _builtin_expect(!!(x),1)x为真的可能性更大<br> _builtin_expect(!!(x),0)x为假的可能性更大</p>
+<p> 当正确的使用了 _builtin_expect之后，编译器会在编译过程中根据程序员的指令，将可能性更大的代码紧跟着前面的代码，从而减少指令跳转带来性能的下降</p>
+<p> <strong>Note:</strong><br> 1.之所以使用likely，unlikely函数来提高CPU的运行速率是因为这两个函数可以改变汇编语言跳转指令后面的分支，使用likely函数可以让跳转指令后面的分支是x为真的分支；而unlikely正好相反，它可以让跳转指令后面的分支是x为假的分支。<br> 2.CPU在执行程序指令的时候，并不是限制性一个，执行完了再执行下一个这样的，而是把每个指令分成了多个阶段，并让不同指令的各部操作重叠，从而实现几条指令并行处理。执行每条指令都有取址，译码，执行，写回四条指令。由之前所知，在跳转指令正在被CPU执行的情况下，在跳转指令下面两条指令的取址与译码都已执行好了。假如说分支预测失败，那么对跳转指令性下的取址与译码指令就白做了。<br> 3.我们身为程序员，当然清楚跳转指令下面的指令哪个更容易被选择，我们就可以使用likely与unlikely函数来改变跳转指令下面的汇编语句，从而达到提高CPU运行的速度。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl88yow7w0005xgvqatisadlk" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-memcpy函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" class="article-date">
@@ -104,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl87il68v000578vqd4pf0vll" data-title="memcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl88yow7x0008xgvq97wxca2c" data-title="memcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -157,7 +252,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl87il68y000978vq5l3ydodf" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl88yow80000dxgvq32vub3a3" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
@@ -211,7 +306,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl87il6a2000l78vq6etz6c69" data-title="strlen" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl88yow8r000lxgvqgamxb4j8" data-title="strlen" class="article-share-link">分享</a>
       
       
       
@@ -260,7 +355,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl87il6a3000n78vq70l5bvw7" data-title="strncpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl88yow8t000qxgvq5odh21yc" data-title="strncpy函数" class="article-share-link">分享</a>
       
       
       
@@ -305,7 +400,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl87il6a5000s78vq8iib109z" data-title="strstr函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl88yow93000zxgvq7ofddnkm" data-title="strstr函数" class="article-share-link">分享</a>
       
       
       
@@ -355,7 +450,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl87il690000d78vqe51lakk7" data-title="strcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl88yow8s000nxgvq0rcycx0i" data-title="strcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -403,7 +498,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl87il6a1000i78vq8mik8zz8" data-title="strdup函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl88yow8q000ixgvq0yzc9he7" data-title="strdup函数" class="article-share-link">分享</a>
       
       
       
@@ -450,7 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl87il6a0000g78vqewiihidg" data-title="strcmp函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl88yow8p000gxgvqczcff17s" data-title="strcmp函数" class="article-share-link">分享</a>
       
       
       
@@ -464,103 +559,11 @@
 
 
   
-    <article id="post-union定义与用法" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" class="article-date">
-  <time class="dt-published" datetime="2022-08-29T16:28:53.000Z" itemprop="datePublished">2022-08-30</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/">union定义与用法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p><strong>定义：</strong><br>  <em>union + 联合体名称 + {成员列表} + 变量列表</em><br>联合体是若干个数据元素共用结构构成的新的数据类型。<br>代码示例：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> [联合体名称]</span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    成员列表；</span><br><span class="line">&#125;联合体名<span class="type">_t</span>;</span><br><span class="line">具体例子：</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">union</span> <span class="title">list</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">float</span> a;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">int</span> b;</span><br><span class="line">    <span class="type">unsigned</span> <span class="type">char</span> c;</span><br><span class="line">&#125;<span class="type">temp_t</span>;</span><br></pre></td></tr></table></figure>
-<hr>
-<p><strong>注意事项：</strong><br>1.联合体类型与结构体类型的定义方法很类似，只是将关键字由struct换成了union。但是他们在内存分配上却有着本质的区别，结构体变量所占用的内存长度是所有元素 所占用的内存总和，而联合体变量所占用的内存长度是其中最长元素的长度。<br>2.联合体类型提供了一种能够在同一内存处理不同类型数据的方法，适当使用联合体空类型可以节约内存空间。<br>3.与结构体一样，联合体引用元素的方法为<strong>联合体变量名.联合体元素</strong>。<br>4.与结构体一样，也可以定义联合体指针进行元素引用，<strong>联合体指针名-&gt;联合体元素</strong>。</p>
-<hr>
-<p><strong>用法：清零结构体</strong><br>如果我们想要把结构体中的数据同时清零，我们就可以通过联合体union特性来做到此事，我们首先定义一个联合体union，然后在其中放两个数据类型，一个是我们想要清零的结构体struct node，另外一个是类型为u16的ALL，如以下代码所示：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">union</span> <span class="title">Node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    u16 ALL;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">    &#123;</span></span><br><span class="line">        <span class="type">int</span> data;</span><br><span class="line">        <span class="type">int</span> len;</span><br><span class="line">    &#125;NODE; </span><br><span class="line">&#125;List;</span><br></pre></td></tr></table></figure>
-<p>根据联合体的定义，只要我们的ALL数据类型比结构体struct node大，我们就可以直接使用以下的语句来实现此功能。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List.ALL=<span class="number">0</span>; <span class="comment">//等价于List.NODE.data=0 和 List.NODE.len=0 这两条语句</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl87il6a4000q78vq9h6cfwqp" data-title="union定义与用法" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-三目运算符" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" class="article-date">
-  <time class="dt-published" datetime="2022-08-29T15:57:16.000Z" itemprop="datePublished">2022-08-29</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/">三目运算符</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>三目运算符是唯一一个有3个操作数的运算符，有时又称为三元运算符，一般用于赋值语句</p>
-<p>形式：<strong>条件表达式1？表达式2;表达式3</strong></p>
-<p>规则：如果表达式1为真，就执行表达式2并返回表达式2的结果；如果表达式1为假，则执行表达式3并返回表达式3的结果</p>
-<p>例如：<br>    <strong>MAX &#x3D; (a &gt; b) ? a : b</strong><br>    如果a&gt;b,MAX&#x3D;a;<br>    如果a&lt;b,MAX&#x3D;b;</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl87il6a6000v78vqe7cy27p9" data-title="三目运算符" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
     
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 
 </section>
@@ -584,7 +587,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
     </div>
   </div>
 
@@ -606,6 +609,14 @@
       <ul>
         
           <li>
+            <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/">结构体数组</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/">lielly/unlikely函数</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
           </li>
         
@@ -615,14 +626,6 @@
         
           <li>
             <a href="/2022/09/15/strlen%E5%87%BD%E6%95%B0/">strlen</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/15/strncpy%E5%87%BD%E6%95%B0/">strncpy函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/15/strstr%E5%87%BD%E6%95%B0/">strstr函数</a>
           </li>
         
       </ul>

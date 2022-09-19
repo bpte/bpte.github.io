@@ -4,19 +4,19 @@
   <meta charset="utf-8">
   
   
-  <title>goto语句 | 一个编程爱好者的进阶之路</title>
+  <title>结构体数组 | 一个编程爱好者的进阶之路</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="##goto语句goto语句又叫无条件转移语句，它可以跳转到任何一行代码前面，这使得他的功能也显得格外强大，但是在这个强大的功能下伴随着巨大的风险，goto语句会造成逻辑上的混乱，使得代码会出现许多意想不到的错误，而且排查这些错误的时候也显得格外困难。因为它有可能会跳过某些结构体的构造、变量的初始化已经重要的计算语句，因此能不使用goto语句就尽量不使用goto语句。 但是goto语句也有自己的使">
+  <meta name="description" content="结构体数组结构体数组是指在一个数组中，所有的元素都是同一结构体类型的变量。 在实际应用中，经常使用结构体数组来表示具有相同数据结构的一个群体。 结构体数组和整型数组都差不多，不同的地方就是在于每一个数组的元素都是一个结构体数组，他们都有各自的成员项。 定义：结构体数组的定义与结构体变量类似，只需要说明它为数组类型即可。 例如：一个班级的学生档案 1234567struct student&amp;#123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="goto语句">
-<meta property="og:url" content="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="结构体数组">
+<meta property="og:url" content="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/index.html">
 <meta property="og:site_name" content="一个编程爱好者的进阶之路">
-<meta property="og:description" content="##goto语句goto语句又叫无条件转移语句，它可以跳转到任何一行代码前面，这使得他的功能也显得格外强大，但是在这个强大的功能下伴随着巨大的风险，goto语句会造成逻辑上的混乱，使得代码会出现许多意想不到的错误，而且排查这些错误的时候也显得格外困难。因为它有可能会跳过某些结构体的构造、变量的初始化已经重要的计算语句，因此能不使用goto语句就尽量不使用goto语句。 但是goto语句也有自己的使">
+<meta property="og:description" content="结构体数组结构体数组是指在一个数组中，所有的元素都是同一结构体类型的变量。 在实际应用中，经常使用结构体数组来表示具有相同数据结构的一个群体。 结构体数组和整型数组都差不多，不同的地方就是在于每一个数组的元素都是一个结构体数组，他们都有各自的成员项。 定义：结构体数组的定义与结构体变量类似，只需要说明它为数组类型即可。 例如：一个班级的学生档案 1234567struct student&amp;#123">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-25T12:27:18.000Z">
-<meta property="article:modified_time" content="2022-08-25T15:31:50.693Z">
+<meta property="article:published_time" content="2022-09-19T12:59:38.000Z">
+<meta property="article:modified_time" content="2022-09-19T16:07:40.468Z">
 <meta property="article:author" content="John Doe">
-<meta property="article:tag" content="函数知识">
+<meta property="article:tag" content="C&#x2F;C++">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="一个编程爱好者的进阶之路" type="application/atom+xml">
@@ -74,10 +74,10 @@
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-goto函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-结构体数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
-    <a href="/2022/08/25/goto%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-08-25T12:27:18.000Z" itemprop="datePublished">2022-08-25</time>
+    <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" class="article-date">
+  <time class="dt-published" datetime="2022-09-19T12:59:38.000Z" itemprop="datePublished">2022-09-19</time>
 </a>
     
   </div>
@@ -88,7 +88,7 @@
         
   
     <h1 class="p-name article-title" itemprop="headline name">
-      goto语句
+      结构体数组
     </h1>
   
 
@@ -96,20 +96,24 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p>##goto语句<br>goto语句又叫无条件转移语句，它可以跳转到任何一行代码前面，这使得他的功能也显得格外强大，但是在这个强大的功能下伴随着巨大的风险，goto语句会造成逻辑上的混乱，使得代码会出现许多意想不到的错误，而且排查这些错误的时候也显得格外困难。因为它有可能会跳过某些结构体的构造、变量的初始化已经重要的计算语句，因此能不使用goto语句就尽量不使用goto语句。</p>
-<p>但是goto语句也有自己的使用场景，但是也就局限于那一两种场景，像那种从一个函数跳转到另外一个函数的这种用法是绝对禁止的。</p>
-<p>###用法一：<br><strong>跳出多重循环</strong></p>
-<p>###用法二：<br><strong>资源的动态申请和释放模板</strong><br>对于一个程序来说如果有许多模块进行动态申请初始化，假如有的模块初始化不成功，那就必须将之前动态分配的空间给释放掉(如果不释放掉就会造成内存泄漏)，这时候一个一个释放就使得代码特别的臃肿，所以我们就可以使用goto语句跳转到一个固定的地方同意释放内存，这样使得代变得简洁。</p>
-<p>实际上，goto语句是C语言为底层造轮子语言的一个象征，为什么这么说呢？<br>只要学习过汇编语言的都知道，汇编语言的循环都是用跳转语句来实现的，这就与goto语句非常的相似，而高级语言像Java，pathon之类的就没有goto语句，原因就是将goto语句封装进了循环。</p>
+        <h1 id="结构体数组"><a href="#结构体数组" class="headerlink" title="结构体数组"></a>结构体数组</h1><p>结构体数组是指在一个数组中，所有的元素都是同一结构体类型的变量。</p>
+<p>在实际应用中，经常使用结构体数组来表示具有相同数据结构的一个群体。</p>
+<p>结构体数组和整型数组都差不多，不同的地方就是在于每一个数组的元素都是一个结构体数组，他们都有各自的成员项。</p>
+<p>定义：结构体数组的定义与结构体变量类似，只需要说明它为数组类型即可。</p>
+<p>例如：一个班级的学生档案</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">student</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="type">int</span> num;</span><br><span class="line">    <span class="type">char</span>* name;</span><br><span class="line">    <span class="type">char</span> sex;</span><br><span class="line">    <span class="type">float</span> source;</span><br><span class="line">&#125;stu[<span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+<p>结构体数组的初始化：<br><code>stu[3] = &#123;&#123;100, "wang", 'F', 89&#125;, &#123;200,"li",'F',43&#125;, &#123;300,"wang",'T'.70&#125;&#125;;</code></p>
+<p>对结构体成员的引用：<br>用<em>数组名.成员名</em>即可引用<br>例子： <code>stu[3].sex = T</code></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl88yow7v0004xgvq1w5a2zln" data-title="goto语句" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl88yow98001dxgvqfgx4hx2f" data-title="结构体数组" class="article-share-link">分享</a>
       
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
 
     </footer>
   </div>
@@ -117,19 +121,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2022/08/25/%E6%8C%87%E9%92%88/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          指针(基础)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2022/08/25/assert%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">assert函数</div>
+      <div class="article-nav-title">lielly/unlikely函数</div>
     </a>
   
 </nav>
