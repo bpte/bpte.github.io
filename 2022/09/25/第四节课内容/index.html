@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>第四节课内容 | 一个编程爱好者的进阶之路</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="##堆结构1.堆结构就是用数组实现的完全二叉树结构。2.完全二叉树中如果每颗子树的最大值在顶部就是大根堆。3.完全二叉树中如果每颗子树的最小值在顶部就是小根堆。4.堆的heapinsert和heapify操作。5.堆结构的增大和减少。6.优先级队列结构，就是堆结构。 ###大根堆 假设装有大根堆的数组下标为i,如果这个数组从arr[0]开始装载大根堆的数据，那么：大根堆左孩子的下标&#x3D; 2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第四节课内容">
+<meta property="og:url" content="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/index.html">
+<meta property="og:site_name" content="一个编程爱好者的进阶之路">
+<meta property="og:description" content="##堆结构1.堆结构就是用数组实现的完全二叉树结构。2.完全二叉树中如果每颗子树的最大值在顶部就是大根堆。3.完全二叉树中如果每颗子树的最小值在顶部就是小根堆。4.堆的heapinsert和heapify操作。5.堆结构的增大和减少。6.优先级队列结构，就是堆结构。 ###大根堆 假设装有大根堆的数组下标为i,如果这个数组从arr[0]开始装载大根堆的数据，那么：大根堆左孩子的下标&#x3D; 2">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-09-25T04:26:55.000Z">
+<meta property="article:modified_time" content="2022-09-25T15:32:51.212Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="B站左神Leecode数据结构与算法">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="一个编程爱好者的进阶之路" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
+
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 6.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">一个编程爱好者的进阶之路</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-第四节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-09-25T04:26:55.000Z" itemprop="datePublished">2022-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      第四节课内容
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##堆结构<br>1.堆结构就是用数组实现的完全二叉树结构。<br>2.完全二叉树中如果每颗子树的最大值在顶部就是大根堆。<br>3.完全二叉树中如果每颗子树的最小值在顶部就是小根堆。<br>4.堆的heapinsert和heapify操作。<br>5.堆结构的增大和减少。<br>6.优先级队列结构，就是堆结构。</p>
+<p>###大根堆</p>
+<p>假设装有大根堆的数组下标为i,如果这个数组从arr[0]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i+1</code><br>大根堆右孩子的下标&#x3D; <code>2*i+2</code><br>大根堆父节点的下标&#x3D; <code>(i-1)/2</code></p>
+<p>如果数组从arr[1]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i </code><br>大根堆右孩子的下标&#x3D; <code>2*i+1</code><br>大根堆父节点的下标&#x3D; <code>i/2</code><br>此时这些数据的下标也可以写成：<br>大根堆左孩子的下标&#x3D; <code>i&lt;&lt;1</code><br>大根堆右孩子的下标&#x3D; <code>i&lt;&lt;1|1</code><br>大根堆父节点的下标&#x3D; <code>i&gt;&gt;1</code><br>这样写的优点是将乘法除法运算都改成了位运算，计算机的运行速度更快</p>
+<p><strong>要求1：</strong><br>依次给你数字，要求把这些数字组织成大根堆形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">heap_insert</span><span class="params">(<span class="type">int</span> *arr, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> t;</span><br><span class="line">	heapsize++;    <span class="comment">//heapsize为全局变量，初始值为0，当大根堆添加数据时，heapsize加1</span></span><br><span class="line">	<span class="type">int</span> i = heapsize;</span><br><span class="line">	arr[i<span class="number">-1</span>] = val;     <span class="comment">//i代表了arr数组的下标</span></span><br><span class="line">	<span class="keyword">while</span> (arr[i - <span class="number">1</span>] &gt; arr[(i<span class="number">-1</span>)/<span class="number">2</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		t = arr[i - <span class="number">1</span>];</span><br><span class="line">		arr[i - <span class="number">1</span>] = arr[(i - <span class="number">1</span>) / <span class="number">2</span>];</span><br><span class="line">		arr[(i - <span class="number">1</span>) / <span class="number">2</span>] = t;</span><br><span class="line">		i  = (i - <span class="number">1</span>) / <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要求2：</strong><br>求出目前大根堆上最大值并返回，然后将最大值从大根堆上删去并使剩下的数据依旧保持大根堆</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">pop_max_number</span><span class="params">(<span class="type">int</span>* arr)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> tem;</span><br><span class="line">	<span class="type">int</span> val = arr[<span class="number">0</span>]; <span class="comment">//大根堆数的最大值就是第0位数据</span></span><br><span class="line">	heapsize--;</span><br><span class="line">	arr[<span class="number">0</span>] = arr[heapsize];   <span class="comment">//将之前丢弃的数据赋值给第一位数据</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>; <span class="comment">//之前被丢弃数据的下标</span></span><br><span class="line">	<span class="type">int</span> left = <span class="number">2</span> * i + <span class="number">1</span>;  <span class="comment">//被丢弃数据的左孩子</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*整体思路：</span></span><br><span class="line"><span class="comment">	 判断(被丢弃数据)与(左右孩子中最大的孩子)的数据那个值大，(被丢弃数据)的值小两者就交换位置，接着向下判断，</span></span><br><span class="line"><span class="comment">	 直至当前数组下标大于或等于heapsize为止*/</span></span><br><span class="line">	<span class="keyword">while</span> (left &lt; heapsize)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> largest = ((arr[left] &gt; arr[left + <span class="number">1</span>])&amp;&amp;(left+<span class="number">1</span> &lt; heapsize))? left : left + <span class="number">1</span>; </span><br><span class="line">		largest = (arr[i] &gt; arr[largest]) ? i : largest; </span><br><span class="line">		<span class="keyword">if</span> (largest == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		tem = arr[largest];</span><br><span class="line">		arr[largest] = arr[i];</span><br><span class="line">		arr[i] = tem;</span><br><span class="line">		i = largest;</span><br><span class="line">		left = i * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8hi4usn0016s8vq0jhj8v6t" data-title="第四节课内容" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">结构体数组</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第四节课内容</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/">结构体数组</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/">lielly/unlikely函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
+          </li>
+        
+          <li>
+            <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2022 John Doe<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.4.1.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

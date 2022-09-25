@@ -71,6 +71,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第四节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-09-25T04:26:55.000Z" itemprop="datePublished">2022-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第四节课内容</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##堆结构<br>1.堆结构就是用数组实现的完全二叉树结构。<br>2.完全二叉树中如果每颗子树的最大值在顶部就是大根堆。<br>3.完全二叉树中如果每颗子树的最小值在顶部就是小根堆。<br>4.堆的heapinsert和heapify操作。<br>5.堆结构的增大和减少。<br>6.优先级队列结构，就是堆结构。</p>
+<p>###大根堆</p>
+<p>假设装有大根堆的数组下标为i,如果这个数组从arr[0]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i+1</code><br>大根堆右孩子的下标&#x3D; <code>2*i+2</code><br>大根堆父节点的下标&#x3D; <code>(i-1)/2</code></p>
+<p>如果数组从arr[1]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i </code><br>大根堆右孩子的下标&#x3D; <code>2*i+1</code><br>大根堆父节点的下标&#x3D; <code>i/2</code><br>此时这些数据的下标也可以写成：<br>大根堆左孩子的下标&#x3D; <code>i&lt;&lt;1</code><br>大根堆右孩子的下标&#x3D; <code>i&lt;&lt;1|1</code><br>大根堆父节点的下标&#x3D; <code>i&gt;&gt;1</code><br>这样写的优点是将乘法除法运算都改成了位运算，计算机的运行速度更快</p>
+<p><strong>要求1：</strong><br>依次给你数字，要求把这些数字组织成大根堆形式</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">heap_insert</span><span class="params">(<span class="type">int</span> *arr, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> t;</span><br><span class="line">	heapsize++;    <span class="comment">//heapsize为全局变量，初始值为0，当大根堆添加数据时，heapsize加1</span></span><br><span class="line">	<span class="type">int</span> i = heapsize;</span><br><span class="line">	arr[i<span class="number">-1</span>] = val;     <span class="comment">//i代表了arr数组的下标</span></span><br><span class="line">	<span class="keyword">while</span> (arr[i - <span class="number">1</span>] &gt; arr[(i<span class="number">-1</span>)/<span class="number">2</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		t = arr[i - <span class="number">1</span>];</span><br><span class="line">		arr[i - <span class="number">1</span>] = arr[(i - <span class="number">1</span>) / <span class="number">2</span>];</span><br><span class="line">		arr[(i - <span class="number">1</span>) / <span class="number">2</span>] = t;</span><br><span class="line">		i  = (i - <span class="number">1</span>) / <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>要求2：</strong><br>求出目前大根堆上最大值并返回，然后将最大值从大根堆上删去并使剩下的数据依旧保持大根堆</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">pop_max_number</span><span class="params">(<span class="type">int</span>* arr)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> tem;</span><br><span class="line">	<span class="type">int</span> val = arr[<span class="number">0</span>]; <span class="comment">//大根堆数的最大值就是第0位数据</span></span><br><span class="line">	heapsize--;</span><br><span class="line">	arr[<span class="number">0</span>] = arr[heapsize];   <span class="comment">//将之前丢弃的数据赋值给第一位数据</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>; <span class="comment">//之前被丢弃数据的下标</span></span><br><span class="line">	<span class="type">int</span> left = <span class="number">2</span> * i + <span class="number">1</span>;  <span class="comment">//被丢弃数据的左孩子</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*整体思路：</span></span><br><span class="line"><span class="comment">	 判断(被丢弃数据)与(左右孩子中最大的孩子)的数据那个值大，(被丢弃数据)的值小两者就交换位置，接着向下判断，</span></span><br><span class="line"><span class="comment">	 直至当前数组下标大于或等于heapsize为止*/</span></span><br><span class="line">	<span class="keyword">while</span> (left &lt; heapsize)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> largest = ((arr[left] &gt; arr[left + <span class="number">1</span>])&amp;&amp;(left+<span class="number">1</span> &lt; heapsize))? left : left + <span class="number">1</span>; </span><br><span class="line">		largest = (arr[i] &gt; arr[largest]) ? i : largest; </span><br><span class="line">		<span class="keyword">if</span> (largest == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		tem = arr[largest];</span><br><span class="line">		arr[largest] = arr[i];</span><br><span class="line">		arr[i] = tem;</span><br><span class="line">		i = largest;</span><br><span class="line">		left = i * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8hi4usn0016s8vq0jhj8v6t" data-title="第四节课内容" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-结构体数组" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" class="article-date">
@@ -106,7 +153,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl88yow98001dxgvqfgx4hx2f" data-title="结构体数组" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl8hi4usn0018s8vq57fq0fef" data-title="结构体数组" class="article-share-link">分享</a>
       
       
       
@@ -152,7 +199,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl88yow7w0005xgvqatisadlk" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl8hi4urt0008s8vq9am47ibl" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
       
       
       
@@ -199,7 +246,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl88yow7x0008xgvq97wxca2c" data-title="memcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4uru0009s8vq051p8zm3" data-title="memcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -252,7 +299,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl88yow80000dxgvq32vub3a3" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl8hi4urx000ds8vq9vjw4acr" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
@@ -306,7 +353,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl88yow8r000lxgvqgamxb4j8" data-title="strlen" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl8hi4ush000os8vqcz593ee2" data-title="strlen" class="article-share-link">分享</a>
       
       
       
@@ -355,7 +402,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl88yow8t000qxgvq5odh21yc" data-title="strncpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4usi000qs8vqb7c83j92" data-title="strncpy函数" class="article-share-link">分享</a>
       
       
       
@@ -400,7 +447,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl88yow93000zxgvq7ofddnkm" data-title="strstr函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8hi4usi000ss8vq0s86cwec" data-title="strstr函数" class="article-share-link">分享</a>
       
       
       
@@ -450,7 +497,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl88yow8s000nxgvq0rcycx0i" data-title="strcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4usf000ks8vqh6z8g2cc" data-title="strcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -498,54 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl88yow8q000ixgvq0yzc9he7" data-title="strdup函数" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-strcmp函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-09-03T17:34:11.000Z" itemprop="datePublished">2022-09-04</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/04/strcmp%E5%87%BD%E6%95%B0/">strcmp函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="strcmp函数"><a href="#strcmp函数" class="headerlink" title="strcmp函数"></a>strcmp函数</h1><p>C语言头文件：&lt;string.h&gt;<br>C++头文件：<cstring></p>
-<p>用法：int strcmp( const char<em>s1, const char</em>s2);</p>
-<p>功能：用来比较字符串的大小。<br>比较规则：<br>若s1&gt;s2,返回为正数。<br>若s1&#x3D;s2,返回为0。<br>若s1&lt;s2,返回为负数。<br>即两个字符串自左向右逐个字符按照ASCLL码进行比较，直到出现不同字符或者出现\0为止。</p>
-<p>返回值；返回s1字符与s2字符的差值。</p>
-<p>实现原理：<br>首先strcmp()先将s1的第一个字符减去s2第二个字符，如果两者的差值为0，就继续比较s1和s2的第二个字符，直到出现\0或者差值不为零为止，如果差值不为零，就将差值返回。例如字符”Ac”和”比较则会返回字符”A”(65)和字符”b”(98)的差值-33。</p>
-<h2 id="代码示例："><a href="#代码示例：" class="headerlink" title="代码示例："></a>代码示例：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span> *s1 = <span class="string">&quot;compare!&quot;</span>;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s2 = <span class="string">&quot;compare!&quot;</span>;</span><br><span class="line">	<span class="type">const</span> <span class="type">char</span>* s3 = <span class="string">&quot;comPare!&quot;</span>;</span><br><span class="line">	<span class="type">int</span> i = <span class="built_in">strcmp</span>(s1, s2);</span><br><span class="line">	<span class="type">int</span> j = <span class="built_in">strcmp</span>(s2, s3);</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (i == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s1=s2\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (i &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s1=%s&quot;</span>,s1);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=%s&quot;</span>, s2);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">if</span> (j == <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=s3\n&quot;</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (j &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s2=%s&quot;</span>, s2);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;s3=%s&quot;</span>, s3);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br>     s1&#x3D;s2<br>     s2&#x3D;compare!</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl88yow8p000gxgvqczcff17s" data-title="strcmp函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8hi4usg000ms8vq3d9t9228" data-title="strdup函数" class="article-share-link">分享</a>
       
       
       
@@ -609,6 +609,10 @@
       <ul>
         
           <li>
+            <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第四节课内容</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/">结构体数组</a>
           </li>
         
@@ -622,10 +626,6 @@
         
           <li>
             <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/15/strlen%E5%87%BD%E6%95%B0/">strlen</a>
           </li>
         
       </ul>
