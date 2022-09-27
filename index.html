@@ -98,13 +98,22 @@
 <p>假设装有大根堆的数组下标为i,如果这个数组从arr[0]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i+1</code><br>大根堆右孩子的下标&#x3D; <code>2*i+2</code><br>大根堆父节点的下标&#x3D; <code>(i-1)/2</code></p>
 <p>如果数组从arr[1]开始装载大根堆的数据，那么：<br>大根堆左孩子的下标&#x3D; <code>2*i </code><br>大根堆右孩子的下标&#x3D; <code>2*i+1</code><br>大根堆父节点的下标&#x3D; <code>i/2</code><br>此时这些数据的下标也可以写成：<br>大根堆左孩子的下标&#x3D; <code>i&lt;&lt;1</code><br>大根堆右孩子的下标&#x3D; <code>i&lt;&lt;1|1</code><br>大根堆父节点的下标&#x3D; <code>i&gt;&gt;1</code><br>这样写的优点是将乘法除法运算都改成了位运算，计算机的运行速度更快</p>
 <p><strong>要求1：</strong><br>依次给你数字，要求把这些数字组织成大根堆形式</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">heap_insert</span><span class="params">(<span class="type">int</span> *arr, <span class="type">int</span> val)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> t;</span><br><span class="line">	heapsize++;    <span class="comment">//heapsize为全局变量，初始值为0，当大根堆添加数据时，heapsize加1</span></span><br><span class="line">	<span class="type">int</span> i = heapsize;</span><br><span class="line">	arr[i<span class="number">-1</span>] = val;     <span class="comment">//i代表了arr数组的下标</span></span><br><span class="line">	<span class="keyword">while</span> (arr[i - <span class="number">1</span>] &gt; arr[(i<span class="number">-1</span>)/<span class="number">2</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		t = arr[i - <span class="number">1</span>];</span><br><span class="line">		arr[i - <span class="number">1</span>] = arr[(i - <span class="number">1</span>) / <span class="number">2</span>];</span><br><span class="line">		arr[(i - <span class="number">1</span>) / <span class="number">2</span>] = t;</span><br><span class="line">		i  = (i - <span class="number">1</span>) / <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">heapinsert</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> val, <span class="type">int</span> heapsize)</span> <span class="comment">//heapsize为全局变量，初始值为0，当大根堆添加数据时，heapsize加1</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line">	<span class="type">int</span> i = heapsize;   <span class="comment">//i代表了arr数组的下标</span></span><br><span class="line">	arr[i - <span class="number">1</span>] = val;</span><br><span class="line">	<span class="keyword">while</span> (arr[i - <span class="number">1</span>] &gt; arr[(i - <span class="number">1</span>) / <span class="number">2</span>])</span><br><span class="line">	&#123;</span><br><span class="line">		swap(arr, i - <span class="number">1</span>, (i - <span class="number">1</span>) / <span class="number">2</span>);</span><br><span class="line">		i = ((i - <span class="number">1</span>) / <span class="number">2</span>) + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p><strong>要求2：</strong><br>求出目前大根堆上最大值并返回，然后将最大值从大根堆上删去并使剩下的数据依旧保持大根堆</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">pop_max_number</span><span class="params">(<span class="type">int</span>* arr)</span></span><br><span class="line">&#123;</span><br><span class="line">    assert(arr);</span><br><span class="line">	<span class="type">int</span> tem;</span><br><span class="line">	<span class="type">int</span> val = arr[<span class="number">0</span>]; <span class="comment">//大根堆数的最大值就是第0位数据</span></span><br><span class="line">	heapsize--;</span><br><span class="line">	arr[<span class="number">0</span>] = arr[heapsize];   <span class="comment">//将之前丢弃的数据赋值给第一位数据</span></span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>; <span class="comment">//之前被丢弃数据的下标</span></span><br><span class="line">	<span class="type">int</span> left = <span class="number">2</span> * i + <span class="number">1</span>;  <span class="comment">//被丢弃数据的左孩子</span></span><br><span class="line"></span><br><span class="line">	<span class="comment">/*整体思路：</span></span><br><span class="line"><span class="comment">	 判断(被丢弃数据)与(左右孩子中最大的孩子)的数据那个值大，(被丢弃数据)的值小两者就交换位置，接着向下判断，</span></span><br><span class="line"><span class="comment">	 直至当前数组下标大于或等于heapsize为止*/</span></span><br><span class="line">	<span class="keyword">while</span> (left &lt; heapsize)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> largest = ((arr[left] &gt; arr[left + <span class="number">1</span>])&amp;&amp;(left+<span class="number">1</span> &lt; heapsize))? left : left + <span class="number">1</span>; </span><br><span class="line">		largest = (arr[i] &gt; arr[largest]) ? i : largest; </span><br><span class="line">		<span class="keyword">if</span> (largest == <span class="number">0</span>)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		tem = arr[largest];</span><br><span class="line">		arr[largest] = arr[i];</span><br><span class="line">		arr[i] = tem;</span><br><span class="line">		i = largest;</span><br><span class="line">		left = i * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> <span class="title function_">pop_stack</span><span class="params">(<span class="type">int</span>* arr)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> val = arr[<span class="number">0</span>];</span><br><span class="line">	arr[<span class="number">0</span>] = arr[heapsize<span class="number">-1</span>]; <span class="comment">//将丢弃的数据发送给arr的第0位</span></span><br><span class="line">	heapify(arr, <span class="number">0</span>, --heapsize);</span><br><span class="line">	<span class="keyword">return</span> val;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//从数组下标为index的数组开始判断arr[index]的数据与它的左右孩子的数据哪个大，数据大两者交换，直至形成大根堆为止</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">heapify</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> index, <span class="type">int</span> heapSize)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line">	<span class="type">int</span> left = index * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	<span class="comment">/*整体思路：</span></span><br><span class="line"><span class="comment">	 判断(被丢弃数据)与(左右孩子中最大的孩子)的数据那个值大，(被丢弃数据)的值小两者就交换位置，接着向下判断，</span></span><br><span class="line"><span class="comment">	 直至当前数组下标大于或等于heapsize为止*/</span></span><br><span class="line">	<span class="keyword">while</span> (left &lt; heapSize)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="type">int</span> largest = left + <span class="number">1</span> &lt; heapSize &amp;&amp; arr[left + <span class="number">1</span>] &gt; arr[left ] ? left+<span class="number">1</span> : left ;</span><br><span class="line">		largest = arr[largest] &gt; arr[index] ? largest : index;</span><br><span class="line">		<span class="keyword">if</span> (largest == index)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		swap(arr, index, largest);</span><br><span class="line">		index = largest;</span><br><span class="line">		left = index * <span class="number">2</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>交换函数swap()：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">swap</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line">	<span class="type">int</span> temp = arr[a];</span><br><span class="line">	arr[a] = arr[b];</span><br><span class="line">	arr[b] = temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###堆排序<br>1.先让整个数组变成大根堆结构，建立堆的结构.<br>2.把堆的最大值和堆的末尾值交换，然后减小堆的大小后，再去调整堆，一直周而复始，时间复杂度为$O(N*logN)$<br>3.堆的大小减小为0时，排序完成</p>
+<p><strong>从上到下的方法，时间复杂度为$O(N*logN)$</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">stack_sort</span><span class="params">(<span class="type">int</span>* arr1 ,<span class="type">const</span> <span class="type">int</span> len)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//第一步</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		push_stack(arr1,arr1[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//第二步</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; len - <span class="number">2</span>; ++j)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(arr1, <span class="number">0</span>, heapsize<span class="number">-1</span>);</span><br><span class="line">		heapify(arr1, <span class="number">0</span>, --heapsize);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>从下到上的方法，时间复杂度为$O(N)$</strong></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">void</span> <span class="title function_">stack_sort_1</span><span class="params">(<span class="type">int</span>* arr1, <span class="type">const</span> <span class="type">int</span> len)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="comment">//第一步     </span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = len - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--) </span><br><span class="line">	&#123;                               </span><br><span class="line">		heapify(arr1, i, len);</span><br><span class="line">		heapsize++;</span><br><span class="line">	&#125; </span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; len - <span class="number">1</span>; ++j)</span><br><span class="line">	&#123;</span><br><span class="line">		swap(arr1, <span class="number">0</span>, heapsize<span class="number">-1</span>);</span><br><span class="line">		heapify(arr1, <span class="number">0</span>, --heapsize);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>###比较器<br>1.比较器的实质就是重载比较运算符<br>2.比较器可以很好的应用在特殊的标准的排序上<br>3.比较器可以很好的应用在特殊标准排序的结构上<br>4.写代码变得异常容易，还用于泛型编程</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8hi4usn0016s8vq0jhj8v6t" data-title="第四节课内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8kdpbsh001azsvq6zm8aetn" data-title="第四节课内容" class="article-share-link">分享</a>
       
       
       
@@ -153,7 +162,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl8hi4usn0018s8vq57fq0fef" data-title="结构体数组" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl8kdpbsh001czsvqdxj7h0ms" data-title="结构体数组" class="article-share-link">分享</a>
       
       
       
@@ -199,7 +208,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl8hi4urt0008s8vq9am47ibl" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl8kdpbs00005zsvqgu13e2zb" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
       
       
       
@@ -246,7 +255,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4uru0009s8vq051p8zm3" data-title="memcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl8kdpbs6000fzsvq3ka0d5b4" data-title="memcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -299,7 +308,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl8hi4urx000ds8vq9vjw4acr" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl8kdpbs8000kzsvq4v88bqui" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
@@ -353,7 +362,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl8hi4ush000os8vqcz593ee2" data-title="strlen" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsc000szsvq0wgbcjdm" data-title="strlen" class="article-share-link">分享</a>
       
       
       
@@ -402,7 +411,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4usi000qs8vqb7c83j92" data-title="strncpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsd000yzsvq7qsjcg76" data-title="strncpy函数" class="article-share-link">分享</a>
       
       
       
@@ -447,7 +456,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8hi4usi000ss8vq0s86cwec" data-title="strstr函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsc000uzsvqgmfh9e3a" data-title="strstr函数" class="article-share-link">分享</a>
       
       
       
@@ -497,7 +506,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl8hi4usf000ks8vqh6z8g2cc" data-title="strcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsa000ozsvq3j48hlv0" data-title="strcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -545,7 +554,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8hi4usg000ms8vq3d9t9228" data-title="strdup函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsb000qzsvq8jfi3c2m" data-title="strdup函数" class="article-share-link">分享</a>
       
       
       
