@@ -71,6 +71,50 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第五节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-09-28T15:07:39.000Z" itemprop="datePublished">2022-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第五节课</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>##前缀树<br>1.单个字符串中，字符从前到后的加入到一颗多叉树上。<br>2.字符放在路上，节点上有专属的数据项。<br>3.所有样本都这样添加，如果没有路就新建，如果有路就复用。<br>4.沿途节点的pass值加1，每个字符串结束时来到的节点end值增加1。</p>
+<p>我们可以利用前缀树完成前缀的相关查询</p>
+<p>前缀树的实现代码：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8lrpeon0000hwvq4rdeesud" data-title="第五节课" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第四节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
@@ -520,54 +564,6 @@
 
 
   
-    <article id="post-strdup函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-09-13T14:40:46.000Z" itemprop="datePublished">2022-09-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/">strdup函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="strdup函数"><a href="#strdup函数" class="headerlink" title="strdup函数"></a>strdup函数</h1><p>C语言头文件：&lt;string.h&gt;</p>
-<p>用法：char* strdup(char *str);</p>
-<p>功能：将字符串拷贝到新建的位置处</p>
-<p><strong>Notes</strong>:<br>1.如果在Test函数里面使用strdup函数，但是出了Test函数依旧可以操作这段内存，并且可以在Test函数外面释放在Test内新建的内存空间。<br>2.由第1点引出的问题就是如何让函数得到的内存数据传出函数依旧可用，目前能想到的方法便是建造一个全局变量用来专门存储这段内存数据的首地址。<br>3.当不需要使用strdup函数返回的字符串时，需要用free来释放相应的空间，否则会产生内存泄漏。</p>
-<p>返回值：返回一个指针，指向为复制字符串分配的空间；如果分配空间失败，返回NULL值。</p>
-<h2 id="strdup的实现："><a href="#strdup的实现：" class="headerlink" title="strdup的实现："></a>strdup的实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="type">char</span>* _strcup(<span class="type">const</span> <span class="type">char</span>*s)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">size_t</span> len = <span class="built_in">strlen</span>(s) + <span class="number">1</span>;</span><br><span class="line">   <span class="type">void</span> *new = <span class="built_in">malloc</span>(len);</span><br><span class="line">   <span class="keyword">if</span>(new == <span class="literal">NULL</span>)</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">   <span class="keyword">return</span> (<span class="type">char</span>*)<span class="built_in">memcpy</span>(new,s,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span>* s =(<span class="type">char</span>*) <span class="string">&quot;good luck for you!&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* d;</span><br><span class="line">	d = _strdup(s);</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == d)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;分配空间失败！\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;字符串d的值为&#x27;%s&#x27;,字符串d的地址为%d,字符串s的地址为%d\n&quot;</span>, d, &amp;d, &amp;s);</span><br><span class="line">	<span class="built_in">free</span>(d);</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br>     字符串d的值为’good luck for you!’,字符串d的地址为19922568,字符串s的地址为19922580</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsb000qzsvq8jfi3c2m" data-title="strdup函数" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -596,7 +592,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
     </div>
   </div>
 
@@ -618,6 +614,10 @@
       <ul>
         
           <li>
+            <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第五节课</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第四节课内容</a>
           </li>
         
@@ -631,10 +631,6 @@
         
           <li>
             <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
           </li>
         
       </ul>

@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-strdup函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-13T14:40:46.000Z" itemprop="datePublished">2022-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/">strdup函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="strdup函数"><a href="#strdup函数" class="headerlink" title="strdup函数"></a>strdup函数</h1><p>C语言头文件：&lt;string.h&gt;</p>
+<p>用法：char* strdup(char *str);</p>
+<p>功能：将字符串拷贝到新建的位置处</p>
+<p><strong>Notes</strong>:<br>1.如果在Test函数里面使用strdup函数，但是出了Test函数依旧可以操作这段内存，并且可以在Test函数外面释放在Test内新建的内存空间。<br>2.由第1点引出的问题就是如何让函数得到的内存数据传出函数依旧可用，目前能想到的方法便是建造一个全局变量用来专门存储这段内存数据的首地址。<br>3.当不需要使用strdup函数返回的字符串时，需要用free来释放相应的空间，否则会产生内存泄漏。</p>
+<p>返回值：返回一个指针，指向为复制字符串分配的空间；如果分配空间失败，返回NULL值。</p>
+<h2 id="strdup的实现："><a href="#strdup的实现：" class="headerlink" title="strdup的实现："></a>strdup的实现：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">   <span class="type">char</span>* _strcup(<span class="type">const</span> <span class="type">char</span>*s)</span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">size_t</span> len = <span class="built_in">strlen</span>(s) + <span class="number">1</span>;</span><br><span class="line">   <span class="type">void</span> *new = <span class="built_in">malloc</span>(len);</span><br><span class="line">   <span class="keyword">if</span>(new == <span class="literal">NULL</span>)</span><br><span class="line">       <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">   <span class="keyword">return</span> (<span class="type">char</span>*)<span class="built_in">memcpy</span>(new,s,len);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">	<span class="type">char</span>* s =(<span class="type">char</span>*) <span class="string">&quot;good luck for you!&quot;</span>;</span><br><span class="line">	<span class="type">char</span>* d;</span><br><span class="line">	d = _strdup(s);</span><br><span class="line">	<span class="keyword">if</span> (<span class="literal">NULL</span> == d)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;分配空间失败！\n&quot;</span>);</span><br><span class="line">		<span class="built_in">exit</span>(<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;字符串d的值为&#x27;%s&#x27;,字符串d的地址为%d,字符串s的地址为%d\n&quot;</span>, d, &amp;d, &amp;s);</span><br><span class="line">	<span class="built_in">free</span>(d);</span><br><span class="line"></span><br><span class="line">	getchar();</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>     字符串d的值为’good luck for you!’,字符串d的地址为19922568,字符串s的地址为19922580</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8kdpbsb000qzsvq8jfi3c2m" data-title="strdup函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-strcmp函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" class="article-date">
@@ -579,65 +627,6 @@
 
 
   
-    <article id="post-rand函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/15/rand%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-08-15T15:28:48.000Z" itemprop="datePublished">2022-08-15</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/15/rand%E5%87%BD%E6%95%B0/">rand函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>#rand()函数<br>C语言头文件：&lt;stdlib.h&gt;</p>
-<p>用法：int rand(void)；</p>
-<p>功能:生成一个随机数。</p>
-<p>返回值：返回生成的随机数。</p>
-<p>下面是一个生成随机数的例子</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line">  <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">   <span class="type">int</span> a = rand();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d\n&quot;</span>,a);</span><br><span class="line">   <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>###随机数的本质<br>多次运行以上的代码，你会发现得到的值是一致的。实际上，rand()函数产生的随机数都<br>是伪随机数，是根据一个数值按照某一个公式推导出来的，这个数值被我们称为“种子”。</p>
-<p>种子每次启动时都是随机的，但是计算机一旦启动后这个值就不会再变了化了，也就是说，<br>每次启动计算机后，种子的值都是固定的了，所以根据公式推出来的结果也是固定的了。</p>
-<p>###播种<br>我们可以通过srand()函数进行重新“播种”，这样种子就会变化。srand()的用法为：<br>void srand(unsighed int seed)</p>
-<p>它需要一个unsighed int类型的参数。通常情况下，我们使用时间作为参数，只要每次播种的时间不同，播种出来的结果(即随机数)自然也不相同。</p>
-<p>使用&lt;time.h&gt;头文件里的time()可以得到目前的时间(精确到秒)，就像下面这样：<br>srand((unsighed)time(NULL))</p>
-<p>###生成一定范围的随机数</p>
-<p>在实际的应用中，我们经常采用取模的方式生成一定范围的随机数<br>例如：<br>rand()%5;   &#x2F;&#x2F;代表此时生成的随机数的范围是0~4，一旦大于5，就会被5整除</p>
-<p>rand()%10 + 15;   &#x2F;&#x2F;产生15~24的随机数</p>
-<p>###连续生成随机数<br>有时候我们需要连续生成多个随机数，最容易想到的方法就是利用循环<br>方法一：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line"> <span class="type">int</span> a;</span><br><span class="line"> <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">5</span>;i++)</span><br><span class="line"> &#123;</span><br><span class="line">   srand((unsighed)time(<span class="literal">NULL</span>));</span><br><span class="line">   a = rand();</span><br><span class="line">   <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a);</span><br><span class="line"> &#125;</span><br><span class="line"> <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">输出：<span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span> <span class="number">132009022</span></span><br></pre></td></tr></table></figure>
-<p> 分析：这里没有出现连续随机数的原因是for循环运行的速度太快了，连一秒的时间都不到就运行完了，而time()函数是指精确到秒的，所以所有的种子都一样。如果需要生成连续的随机数，把srand((unsighed)time(NULL))放到for循环的外面就可以了，如方法二所示：</p>
-<p>方法二：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"> <span class="meta">#<span class="keyword">include</span> <span class="string">&lt;time.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"> <span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line"> &#123;</span><br><span class="line">  <span class="type">int</span> a;</span><br><span class="line">  srand((unsighed)time(<span class="literal">NULL</span>));</span><br><span class="line">  <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">100</span>;i++)</span><br><span class="line">  &#123;</span><br><span class="line">    a = rand();</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>,a);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line"> &#125;</span><br><span class="line">输出：<span class="number">664229233</span> <span class="number">496172995</span> <span class="number">2049999013</span> <span class="number">713627486</span> <span class="number">767289124</span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/15/rand%E5%87%BD%E6%95%B0/" data-id="cl8kdpbs7000izsvq9nliarub" data-title="rand函数" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -666,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 15px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
+      <a href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" style="font-size: 10px;">B站左神Leecode数据结构与算法</a> <a href="/tags/C-C/" style="font-size: 10px;">C/C++</a> <a href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" style="font-size: 20px;">函数知识</a>
     </div>
   </div>
 
@@ -688,6 +677,10 @@
       <ul>
         
           <li>
+            <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第五节课</a>
+          </li>
+        
+          <li>
             <a href="/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第四节课内容</a>
           </li>
         
@@ -701,10 +694,6 @@
         
           <li>
             <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/15/sprintf%E5%87%BD%E6%95%B0/">sprintf函数</a>
           </li>
         
       </ul>
