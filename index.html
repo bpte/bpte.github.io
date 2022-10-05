@@ -71,6 +71,44 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-第六节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/10/05/%E7%AC%AC%E5%85%AD%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
+  <time class="dt-published" datetime="2022-10-05T09:25:33.000Z" itemprop="datePublished">2022-10-05</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/10/05/%E7%AC%AC%E5%85%AD%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第六节课内容</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/10/05/%E7%AC%AC%E5%85%AD%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8vfcwro0018e0vqfbnd3k28" data-title="第六节课内容" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-第五节课内容" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" class="article-date">
@@ -102,11 +140,13 @@
 <p>计数排序和基数排序<br>1.一般来讲，计数排序要求，样本是整数，且范围比较窄。<br>2.一般来讲，基数排序要求，样本是十进制的正整数。<br>3.一旦要求稍有升级，代码改写代价是显而易见的。</p>
 <h3 id="基数排序的实现："><a href="#基数排序的实现：" class="headerlink" title="基数排序的实现："></a>基数排序的实现：</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//进行排序</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">sort</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> len = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> arr[len] = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//1.初始化数组,将数组的数据打印出来</span></span><br><span class="line">    arr_init(arr, len);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//2.计算最高位</span></span><br><span class="line">	<span class="type">int</span> dight = maxbits(arr, len);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//3.进行排序，然后将排序后的数据打印出来</span></span><br><span class="line">	radixSort(arr, <span class="number">0</span>, len<span class="number">-1</span>, dight);</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">&quot;%d &quot;</span>, arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//计算出数组数据的最高位</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">maxbits</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> len)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line">	<span class="type">int</span> max = arr[<span class="number">0</span>];</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt; len; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		max = math_max( max, arr[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="type">int</span> res = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (max != <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		res++;</span><br><span class="line">		max = max / <span class="number">10</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//比较a，b两个数据的大小并返回数值大的数据</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">math_max</span><span class="params">( <span class="type">int</span> a, <span class="type">int</span> b)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">return</span> a = a &gt; b ? a : b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//初始化数组arr,并让arr数组随机产生0-200的数</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">arr_init</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> len)</span></span><br><span class="line">&#123;</span><br><span class="line">	srand((<span class="type">unsigned</span>)time(<span class="literal">NULL</span>));</span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		arr[i] = rand() % <span class="number">200</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//让数组arr从arr[left]到arr[right]之间有序</span></span><br><span class="line"><span class="type">void</span> <span class="title function_">radixSort</span><span class="params">(<span class="type">int</span>* arr, <span class="type">int</span> left, <span class="type">int</span> right, <span class="type">int</span> dight)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(arr);</span><br><span class="line"></span><br><span class="line">	<span class="type">const</span> <span class="type">int</span> radix = <span class="number">10</span>;</span><br><span class="line">	<span class="type">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="type">int</span> j = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//辅助数组help</span></span><br><span class="line">	<span class="type">int</span> help[<span class="number">10</span>] = &#123;&#125;;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//d=1代表个位，d=2代表十位，d=3代表百位</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="type">int</span> d = <span class="number">1</span>; d &lt;= dight; d++)</span><br><span class="line">	&#123;</span><br><span class="line">        <span class="comment">//count的十个元素代表了0-9</span></span><br><span class="line">		<span class="type">int</span> count[<span class="number">10</span>] = &#123;&#125;;</span><br><span class="line">        </span><br><span class="line">		<span class="keyword">for</span> (i = left; i &lt;= right; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			j = getDigst(arr[i], d);</span><br><span class="line">			count[j]++;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; radix; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			count[i] = count[i] + count[i - <span class="number">1</span>];</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">for</span> (i = right; i &gt;= left; i--)</span><br><span class="line">		&#123;</span><br><span class="line">			j = getDigst(arr[i], d);</span><br><span class="line">			help[count[j] - <span class="number">1</span>] = arr[i];</span><br><span class="line">			count[j]--;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//将辅助数组help的值复制给arr数组</span></span><br><span class="line">		<span class="keyword">for</span> (i = left; i &lt;= right; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			arr[i] = help[i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//得到dight位上的数，dight=1代表个位，dight=2代表十位，dight=3代表百位</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">getDigst</span><span class="params">(<span class="type">int</span> val, <span class="type">int</span> dight)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">int</span> value = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">switch</span> (dight)</span><br><span class="line">	&#123;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">1</span>:</span><br><span class="line">		<span class="keyword">if</span> (val &gt;= <span class="number">100</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			value = val / <span class="number">100</span>;</span><br><span class="line">			val = val - value * <span class="number">100</span>;</span><br><span class="line">			value = val / <span class="number">10</span>;</span><br><span class="line">			val = val - value * <span class="number">10</span>;</span><br><span class="line">			<span class="keyword">return</span> val;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>((val &lt; <span class="number">100</span>) &amp;&amp; (val &gt;= <span class="number">10</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			value = val / <span class="number">10</span>;</span><br><span class="line">			val = val - value * <span class="number">10</span>;</span><br><span class="line">			<span class="keyword">return</span> val;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> val;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">case</span> <span class="number">2</span>:</span><br><span class="line">		<span class="keyword">if</span> (val &gt;= <span class="number">100</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			value = val / <span class="number">100</span>;</span><br><span class="line">			val = val - value * <span class="number">100</span>;</span><br><span class="line">			<span class="keyword">return</span> val = val / <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span> ((val &lt; <span class="number">100</span>) &amp;&amp; (val &gt;= <span class="number">10</span>))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> val = val / <span class="number">10</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	<span class="keyword">case</span> <span class="number">3</span>:</span><br><span class="line">		<span class="keyword">if</span> (val &gt;= <span class="number">100</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> val = val / <span class="number">100</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<h4 id="排序算法的稳定性："><a href="#排序算法的稳定性：" class="headerlink" title="排序算法的稳定性："></a>排序算法的稳定性：</h4><p>稳定性是指同样大小的样本在排序后不会改变相对次序。<br>对基础类型来说，稳定性毫无意义。<br>对非基础类型来说，稳定性有重要意义。<br>有些排序算法可以实现成稳定的，而有些排序算法无论如何都实现不成稳定的。</p>
+<h3 id="排序算法总结："><a href="#排序算法总结：" class="headerlink" title="排序算法总结："></a>排序算法总结：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">排序种类       时间复杂度      额外空间复杂度       稳定性</span><br><span class="line">选择排序         o(N^2)           O(1)             无</span><br><span class="line">冒泡排序         o(N^2)           O(1)              有</span><br><span class="line">插入排序         o(N^2)           O(1)              有</span><br><span class="line">归并排序         o(N*logN)        0(N)              有</span><br><span class="line">随机快排         o(N*logN)        o(logN)           无</span><br><span class="line">堆排序           o(N*logN)        O(1)              无</span><br><span class="line">*********************************************************</span><br><span class="line">计数排序         O(N)             0(N)              有</span><br><span class="line">基数排序         O(N)             0(N)              有</span><br></pre></td></tr></table></figure>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8uskq4c001as4vq28zd0688" data-title="第五节课" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8vfcwrn0014e0vq51trdivq" data-title="第五节课" class="article-share-link">分享</a>
       
       
       
@@ -162,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8uskq4c001cs4vq3t7fap69" data-title="第四节课内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/25/%E7%AC%AC%E5%9B%9B%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8vfcwro001ae0vq8iyub5am" data-title="第四节课内容" class="article-share-link">分享</a>
       
       
       
@@ -211,7 +251,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl8uskq4d001es4vq2whw0xuy" data-title="结构体数组" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84/" data-id="cl8vfcwrp001ce0vqgdkbg58s" data-title="结构体数组" class="article-share-link">分享</a>
       
       
       
@@ -257,7 +297,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl8uskq340004s4vq9ndlboux" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/" data-id="cl8vfcwr80008e0vq1sy34rwr" data-title="lielly/unlikely函数" class="article-share-link">分享</a>
       
       
       
@@ -304,7 +344,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl8uskq3d000gs4vqb1kf0esb" data-title="memcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/18/memcpy%E5%87%BD%E6%95%B0/" data-id="cl8vfcwr90009e0vq71ji157l" data-title="memcpy函数" class="article-share-link">分享</a>
       
       
       
@@ -357,7 +397,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl8uskq3d000is4vq21mv80ma" data-title="sprintf函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/sprintf%E5%87%BD%E6%95%B0/" data-id="cl8vfcwrc000fe0vqd1h9fkc2" data-title="sprintf函数" class="article-share-link">分享</a>
       
       
       
@@ -411,7 +451,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl8uskq46000ss4vq05w9h1q3" data-title="strlen" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strlen%E5%87%BD%E6%95%B0/" data-id="cl8vfcwrh000oe0vq332nc8bt" data-title="strlen" class="article-share-link">分享</a>
       
       
       
@@ -460,7 +500,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl8uskq45000qs4vq59xqcbcm" data-title="strncpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strncpy%E5%87%BD%E6%95%B0/" data-id="cl8vfcwri000qe0vq45ukaioh" data-title="strncpy函数" class="article-share-link">分享</a>
       
       
       
@@ -505,57 +545,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8uskq490012s4vq582yh1rq" data-title="strstr函数" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-strcpy函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" class="article-date">
-  <time class="dt-published" datetime="2022-09-13T14:41:14.000Z" itemprop="datePublished">2022-09-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="strcpy函数"><a href="#strcpy函数" class="headerlink" title="strcpy函数"></a>strcpy函数</h1><p>C语言头文件: &lt;string.h&gt;</p>
-<p>用法： char *strcpy(char *destination, const char *source);</p>
-<p>功能：strcpy函数将含有’\0’结束符的字符串复制到另一个地址空间</p>
-<p>返回值：返回的是目标字符串的首地址</p>
-<p><strong>Notes：</strong><br>1.目标空间必须足够大，以确保能够放得下复制过来的字符串。<br>2.目标空间必须可变，即 char *destination不能用const修饰，并且目的地空间的字符串不能时常量字符串，常量字符串不能被修改。<br>3.源字符串必须含有’\0’。<br>4.strcpy函数会将源字符串的’\0’也拷贝到目的地空间</p>
-<p>返回值：返回的时目的字符串的首地址。</p>
-<h2 id="模拟实现strcpy函数"><a href="#模拟实现strcpy函数" class="headerlink" title="模拟实现strcpy函数"></a>模拟实现strcpy函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(destination);</span><br><span class="line">	assert(source);</span><br><span class="line">	<span class="type">char</span>* str = destination;</span><br><span class="line">	<span class="keyword">while</span> ((source==str) != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		str = (<span class="type">char</span>*)source;</span><br><span class="line">		source++;</span><br><span class="line">		str++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> destination;</span><br></pre></td></tr></table></figure>
-
-<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">20</span>] = <span class="string">&quot;char is OK\0&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, <span class="built_in">string</span>);</span><br><span class="line">	<span class="type">char</span> s[<span class="number">20</span>] = <span class="string">&quot;char is error&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s %s\n&quot;</span>, my_strcpy(s,<span class="built_in">string</span>), <span class="built_in">strcpy</span>(s, <span class="built_in">string</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(destination);</span><br><span class="line">	assert(source);</span><br><span class="line">	<span class="type">char</span>* str = destination;</span><br><span class="line">	<span class="keyword">while</span> ((source==str) != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		str = (<span class="type">char</span>*)source;</span><br><span class="line">		source++;</span><br><span class="line">		str++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> destination;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：<br>char is OK<br>char is OK char is OK</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl8uskq44000os4vqcu26guzt" data-title="strcpy函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/15/strstr%E5%87%BD%E6%95%B0/" data-id="cl8vfcwrj000se0vqbmlx9dq1" data-title="strstr函数" class="article-share-link">分享</a>
       
       
       
@@ -606,7 +596,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
     </div>
   </div>
 
@@ -617,6 +607,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/10/05/%E7%AC%AC%E5%85%AD%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第六节课内容</a>
+          </li>
         
           <li>
             <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第五节课</a>
@@ -632,10 +626,6 @@
         
           <li>
             <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/">lielly/unlikely函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
           </li>
         
       </ul>

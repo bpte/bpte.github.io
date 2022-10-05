@@ -71,6 +71,56 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-strcpy函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" class="article-date">
+  <time class="dt-published" datetime="2022-09-13T14:41:14.000Z" itemprop="datePublished">2022-09-13</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/09/13/strcpy%E5%87%BD%E6%95%B0/">strcpy函数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="strcpy函数"><a href="#strcpy函数" class="headerlink" title="strcpy函数"></a>strcpy函数</h1><p>C语言头文件: &lt;string.h&gt;</p>
+<p>用法： char *strcpy(char *destination, const char *source);</p>
+<p>功能：strcpy函数将含有’\0’结束符的字符串复制到另一个地址空间</p>
+<p>返回值：返回的是目标字符串的首地址</p>
+<p><strong>Notes：</strong><br>1.目标空间必须足够大，以确保能够放得下复制过来的字符串。<br>2.目标空间必须可变，即 char *destination不能用const修饰，并且目的地空间的字符串不能时常量字符串，常量字符串不能被修改。<br>3.源字符串必须含有’\0’。<br>4.strcpy函数会将源字符串的’\0’也拷贝到目的地空间</p>
+<p>返回值：返回的时目的字符串的首地址。</p>
+<h2 id="模拟实现strcpy函数"><a href="#模拟实现strcpy函数" class="headerlink" title="模拟实现strcpy函数"></a>模拟实现strcpy函数</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(destination);</span><br><span class="line">	assert(source);</span><br><span class="line">	<span class="type">char</span>* str = destination;</span><br><span class="line">	<span class="keyword">while</span> ((source==str) != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		str = (<span class="type">char</span>*)source;</span><br><span class="line">		source++;</span><br><span class="line">		str++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> destination;</span><br></pre></td></tr></table></figure>
+
+<h2 id="例子："><a href="#例子：" class="headerlink" title="例子："></a>例子：</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;malloc.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;assert.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="type">char</span> <span class="built_in">string</span>[<span class="number">20</span>] = <span class="string">&quot;char is OK\0&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s\n&quot;</span>, <span class="built_in">string</span>);</span><br><span class="line">	<span class="type">char</span> s[<span class="number">20</span>] = <span class="string">&quot;char is error&quot;</span>;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">&quot;%s %s\n&quot;</span>, my_strcpy(s,<span class="built_in">string</span>), <span class="built_in">strcpy</span>(s, <span class="built_in">string</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="type">char</span>* <span class="title function_">my_strcpy</span><span class="params">(<span class="type">char</span>* destination, <span class="type">const</span> <span class="type">char</span>* source)</span></span><br><span class="line">&#123;</span><br><span class="line">	assert(destination);</span><br><span class="line">	assert(source);</span><br><span class="line">	<span class="type">char</span>* str = destination;</span><br><span class="line">	<span class="keyword">while</span> ((source==str) != <span class="string">&#x27;\0&#x27;</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		str = (<span class="type">char</span>*)source;</span><br><span class="line">		source++;</span><br><span class="line">		str++;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> destination;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：<br>char is OK<br>char is OK char is OK</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2022/09/13/strcpy%E5%87%BD%E6%95%B0/" data-id="cl8vfcwrf000ke0vq1g5j4utb" data-title="strcpy函数" class="article-share-link">分享</a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%87%BD%E6%95%B0%E7%9F%A5%E8%AF%86/" rel="tag">函数知识</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-strdup函数" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/09/13/strdup%E5%87%BD%E6%95%B0/" class="article-date">
@@ -105,7 +155,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8uskq47000ws4vqd7qxel1z" data-title="strdup函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/13/strdup%E5%87%BD%E6%95%B0/" data-id="cl8vfcwrg000me0vq7bfg7955" data-title="strdup函数" class="article-share-link">分享</a>
       
       
       
@@ -152,7 +202,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl8uskq43000ms4vqhkbf8y1d" data-title="strcmp函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/09/04/strcmp%E5%87%BD%E6%95%B0/" data-id="cl8vfcwre000ie0vq8n42hzv1" data-title="strcmp函数" class="article-share-link">分享</a>
       
       
       
@@ -200,7 +250,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl8uskq490010s4vq0padfow0" data-title="union定义与用法" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/30/union%E5%AE%9A%E4%B9%89%E4%B8%8E%E7%94%A8%E6%B3%95/" data-id="cl8vfcwrk000ue0vq8w5gd5vk" data-title="union定义与用法" class="article-share-link">分享</a>
       
       
       
@@ -244,7 +294,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl8uskq48000ys4vqfny8d8ht" data-title="三目运算符" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97%E7%AC%A6/" data-id="cl8vfcwrk000we0vq31ea7pvf" data-title="三目运算符" class="article-share-link">分享</a>
       
       
       
@@ -307,7 +357,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8uskq4a0016s4vq12d1g9l5" data-title="第三节课内容" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/29/%E7%AC%AC%E4%B8%89%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/" data-id="cl8vfcwrm0012e0vq2fgjgwhw" data-title="第三节课内容" class="article-share-link">分享</a>
       
       
       
@@ -415,7 +465,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl8uskq47000us4vq5uvh9b4z" data-title="指针(基础)" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E6%8C%87%E9%92%88/" data-id="cl8vfcwrl000ye0vq29e96dxy" data-title="指针(基础)" class="article-share-link">分享</a>
       
       
       
@@ -460,7 +510,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl8uskq350005s4vqd76p1gxx" data-title="goto语句" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/goto%E5%87%BD%E6%95%B0/" data-id="cl8vfcwr70006e0vq2zm38tn1" data-title="goto语句" class="article-share-link">分享</a>
       
       
       
@@ -508,7 +558,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl8uskq340003s4vq7igsezal" data-title="assert函数" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/assert%E5%87%BD%E6%95%B0/" data-id="cl8vfcwr60004e0vq98dadloj" data-title="assert函数" class="article-share-link">分享</a>
       
       
       
@@ -560,64 +610,11 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl8uskq4a0014s4vq5lw7h75r" data-title="第二节课代码补充" class="article-share-link">分享</a>
+      <a data-url="http://example.com/2022/08/25/%E7%AC%AC%E4%BA%8C%E8%8A%82%E8%AF%BE%E4%BB%A3%E7%A0%81%E8%A1%A5%E5%85%85/" data-id="cl8vfcwrn0016e0vqaka74eeo" data-title="第二节课代码补充" class="article-share-link">分享</a>
       
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/B%E7%AB%99%E5%B7%A6%E7%A5%9ELeecode%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" rel="tag">B站左神Leecode数据结构与算法</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-条件编译" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" class="article-date">
-  <time class="dt-published" datetime="2022-08-17T20:30:11.000Z" itemprop="datePublished">2022-08-18</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/">条件编译</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>##条件编译常见的有以下三种形式：<br>###形式一：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 1      <span class="comment">//如果条件为真(1代表条件为真)，执行code1语句，否则执行code2语句</span></span></span><br><span class="line">  code1</span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">if</span> 1     <span class="comment">//如果if后面为1执行code，为0则不执行code</span></span></span><br><span class="line">  code</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###形式二：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> max 1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> max    <span class="comment">//如果定义了max就执行code1，没有定义max就执行code2</span></span></span><br><span class="line">  code1       <span class="comment">//我们这里在上面对max进行了宏定义，所以此时执行code1</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifdef</span> max     <span class="comment">//如果定义了max执行code，没有定义则不执行code</span></span></span><br><span class="line">  code         <span class="comment">//我们这里并没有对max进行宏定义，所以不执行code</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###形式三：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MIN     <span class="comment">//如果没有定义MIN执行code1，定义了MIN则执行code2</span></span></span><br><span class="line">  code1         <span class="comment">//我们这里我们这里并没有对MIN进行宏定义，所以执行code2</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line">  code2</span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>当省掉else后则变成了</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">define</span> MIN 0</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">ifndef</span> MIN    <span class="comment">//如果没有定义MIN执行code，定义了MIN就不执行code</span></span></span><br><span class="line">  code         <span class="comment">//我们这里在上面对MIN进行了宏定义，所以此时不执行code</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br></pre></td></tr></table></figure>
-<p>###头文件的条件编译：<br>编写C语言的头文件，为了防止头文件被重复编译，我们使用了条件编译</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">ifndef</span> _FUN_H   <span class="comment">// 如果没有定义_FUN_H  </span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> _FUN_H   <span class="comment">// 定义一个_FUN_H  </span></span></span><br><span class="line"></span><br><span class="line">   code     <span class="comment">//头文件的内容</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span>    <span class="comment">//头文件的最后一行，代表头文件的结束</span></span></span><br></pre></td></tr></table></figure>
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2022/08/18/%E6%9D%A1%E4%BB%B6%E7%BC%96%E8%AF%91/" data-id="cl8uskq4b0018s4vq1twye6yo" data-title="条件编译" class="article-share-link">分享</a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/" rel="tag">C&#x2F;C++</a></li></ul>
 
     </footer>
   </div>
@@ -664,7 +661,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">十月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">九月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/08/">八月 2022</a></li></ul>
     </div>
   </div>
 
@@ -675,6 +672,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/10/05/%E7%AC%AC%E5%85%AD%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第六节课内容</a>
+          </li>
         
           <li>
             <a href="/2022/09/28/%E7%AC%AC%E4%BA%94%E8%8A%82%E8%AF%BE%E5%86%85%E5%AE%B9/">第五节课</a>
@@ -690,10 +691,6 @@
         
           <li>
             <a href="/2022/09/19/lielly-unlikely%E5%87%BD%E6%95%B0/">lielly/unlikely函数</a>
-          </li>
-        
-          <li>
-            <a href="/2022/09/18/memcpy%E5%87%BD%E6%95%B0/">memcpy函数</a>
           </li>
         
       </ul>
